@@ -11,6 +11,7 @@ export const LogoLottie = (props: {
 }) => {
     return (
         <Lottie
+            loop={0}
             animationData={props.json}
             play={props.play}
             style={{ width: props.width, height: props.height }}
