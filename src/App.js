@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Box } from '@chakra-ui/react';
+import ReactPageScroller from 'react-page-scroller';
 import './App.css';
+import { Navigation } from './components/Navigation/index';
+import { Welcome } from './components/Welcome/index';
+import { Date } from './components/Date/index';
+import { Location } from './components/Location/index';
+import { RSVP } from './components/RSVP';
 
-function App() {
+const App = () => {
+  const [page, setPage] = React.useState(0);
+  // React.useLayoutEffect(() => {
+  //   setTimeout(() => {
+  //     setPage(1)
+  //   }, 4000);
+  // }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box display="flex" flexDir="row" justifyContent="flex-end">
+      <Navigation />
+      <ReactPageScroller
+        pageOnChange={(pageNumber) => { setPage(pageNumber) }}
+        customPageNumber={page}
+        containerWidth={window.innerWidth}
+      >
+        <Welcome page={page} />
+        <Date page={page} />
+        <Location page={page} />
+        <RSVP page={page} />
+      </ReactPageScroller>
+    </Box>
   );
 }
 
