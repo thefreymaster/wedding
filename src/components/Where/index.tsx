@@ -1,11 +1,10 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/react';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../../constants';
-import { LogoLottie, SkylineSVG } from '../../common/Logo';
-import JSON from '../../lottie/logo-location.json';
-import CITY from '../../lottie/city.json';
+import { SkylineSVG } from '../../common/Logo';
+import { ArrowDown } from '../../common/ArrowDown/index';
 
-export const Location = (props: {
+export const Where = (props: {
     page: number
 }) => {
     return (
@@ -20,11 +19,12 @@ export const Location = (props: {
         >
             <SkylineSVG width={800} height={400} />
             <Box p="1">
-                <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="300"  letterSpacing="10px">WHERE</Text>
+                <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="300" letterSpacing="10px">WHERE</Text>
             </Box>
             <Box p="1">
                 <Text color={PRIMARY_COLOR} fontSize="6xl" fontWeight="200" letterSpacing="20px">CAMBRIDGE, MA</Text>
             </Box>
+            <ArrowDown heightModifier="110%" />
         </Box>
     )
 }

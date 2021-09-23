@@ -5,20 +5,38 @@ import './App.css';
 import { Navigation } from './components/Navigation/index';
 import { Welcome } from './components/Welcome/index';
 import { Us, WeMet, WeMoveIn, WeMove, WeEngaged } from './components/Us/index';
-import { Location } from './components/Location/index';
+import { Where } from './components/Where/index';
 import { RSVP } from './components/RSVP';
+import { When } from './components/When/index';
+import { useParams } from 'react-router-dom';
+import { SCROLL_ROUTES } from './constants';
 
 const App = () => {
   const [page, setPage] = React.useState(0);
-  // React.useLayoutEffect(() => {
-  //   setTimeout(() => {
-  //     setPage(1)
-  //   }, 4000);
-  // }, [])
+  const params = useParams();
+  console.log(params)
+
+  React.useLayoutEffect(() => {
+    window.scrollTo({
+      top: SCROLL_ROUTES[params.route].multiplier * window.innerHeight,
+      x: 0,
+      behavior: 'smooth'
+    });
+  }, [params.route]);
+
   return (
     <Box display="flex" flexDir="column">
       <Navigation setPage={setPage} page={page} />
-      <ReactPageScroller
+      <Welcome page={page} />
+      <WeMet page={page} />
+      <WeMoveIn page={page} />
+      <WeMove page={page} />
+      <WeEngaged page={page} />
+      <Us page={page} />
+      <Where page={page} />
+      <When page={page} />
+      <RSVP page={page} />
+      {/* <ReactPageScroller
         pageOnChange={(pageNumber) => { setPage(pageNumber) }}
         customPageNumber={page}
         containerWidth={window.innerWidth}
@@ -30,9 +48,10 @@ const App = () => {
         <WeEngaged page={page} />
 
         <Us page={page} />
-        <Location page={page} />
+        <Where page={page} />
+        <When page={page} />
         <RSVP page={page} />
-      </ReactPageScroller>
+      </ReactPageScroller> */}
     </Box>
   );
 }

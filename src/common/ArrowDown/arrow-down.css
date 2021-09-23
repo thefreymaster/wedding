@@ -1,0 +1,23 @@
+.bounce {
+    animation                : bounce-in cubic-bezier(1, 0.4, 0, 1.01);
+    animation-duration       : 2000ms;
+    animation-iteration-count: infinite;
+    will-change              : transform;
+}
+
+@keyframes bounce-in {
+    0% {
+        opacity  : 0.3;
+        transform: translateY(-20px)
+    }
+
+    50% {
+        opacity  : 1;
+        transform: translateY(0px)
+    }
+
+    100% {
+        opacity  : 0.3;
+        transform: translateY(-20px)
+    }
+}
