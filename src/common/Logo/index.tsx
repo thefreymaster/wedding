@@ -2,6 +2,7 @@ import React from 'react';
 import Lottie from 'react-lottie-player'
 import logoJson from '../../lottie/logo.json'
 import SVG from '../../assets/logo.svg';
+import SKYLINE from '../../assets/skyline.svg';
 
 export const LogoLottie = (props: {
     width: number | 200,
@@ -44,3 +45,16 @@ export const LogoSVG = (props: {
         />
     )
 }
+
+export const SkylineSVG = (props: {
+    width: number | 200,
+    height: number | 200,
+}) => {
+    return (
+        <img
+            src={SKYLINE}
+            style={{ width: props.width, height: props.height }}
+        />
+    )
+}
+

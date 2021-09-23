@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/react';
-import { LogoSVG } from '../Logo';
+import { LogoSVG } from '../../common/Logo';
 import { PRIMARY_COLOR } from '../../constants';
-import { Logo } from '../Logo/index';
+import { Logo } from '../../common/Logo/index';
 
 export const RSVP = (props: {
     page: number

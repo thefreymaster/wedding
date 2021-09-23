@@ -4,7 +4,7 @@ import ReactPageScroller from 'react-page-scroller';
 import './App.css';
 import { Navigation } from './components/Navigation/index';
 import { Welcome } from './components/Welcome/index';
-import { Date } from './components/Date/index';
+import { Us, WeMet, WeMoveIn, WeMove, WeEngaged } from './components/Us/index';
 import { Location } from './components/Location/index';
 import { RSVP } from './components/RSVP';
 
@@ -16,15 +16,20 @@ const App = () => {
   //   }, 4000);
   // }, [])
   return (
-    <Box display="flex" flexDir="row" justifyContent="flex-end">
-      <Navigation />
+    <Box display="flex" flexDir="column">
+      <Navigation setPage={setPage} page={page} />
       <ReactPageScroller
         pageOnChange={(pageNumber) => { setPage(pageNumber) }}
         customPageNumber={page}
         containerWidth={window.innerWidth}
       >
         <Welcome page={page} />
-        <Date page={page} />
+        <WeMet page={page} />
+        <WeMoveIn page={page} />
+        <WeMove page={page} />
+        <WeEngaged page={page} />
+
+        <Us page={page} />
         <Location page={page} />
         <RSVP page={page} />
       </ReactPageScroller>
