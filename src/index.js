@@ -4,8 +4,9 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
-import Router from './router';
+import { ParallaxProvider } from 'react-scroll-parallax';
 import firebase from "firebase/app";
+import App from './App';
 
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,11 +22,13 @@ firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ChakraProvider>
-        <Router />
-      </ChakraProvider>
-    </BrowserRouter>
+    <ParallaxProvider>
+      <BrowserRouter>
+        <ChakraProvider>
+          <App />
+        </ChakraProvider>
+      </BrowserRouter>
+    </ParallaxProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

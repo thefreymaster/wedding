@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/react';
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, NavLink, useLocation, useParams } from 'react-router-dom';
 import { LogoSVG } from '../../common/Logo';
 import { SCROLL_ROUTES } from '../../constants';
 
@@ -34,8 +34,9 @@ export const Navigation = (props: {
     page: number;
     setPage(index: number): void;
 }) => {
-    const params: any = useParams();
-    const [animation, setAnimation] = React.useState(params.route === 'home' ? false : true);
+    const location: any = useLocation();
+    console.log(location);
+    const [animation, setAnimation] = React.useState(location.pathname === '/' ? false : true);
     React.useLayoutEffect(() => {
         setTimeout(() => {
             setAnimation(true)
@@ -63,13 +64,12 @@ export const Navigation = (props: {
             >
                 <LogoSVG height={50} width={50} />
                 <Box flexGrow={1} />
-                {Object.entries(SCROLL_ROUTES).map(([title, index]) => {
-                    console.log([title, index])
+                {SCROLL_ROUTES.map((item: any) => {
                     return (
                         <>
-                            <NavLink to={title}>
-                                <Text _hover={{ color: 'whiteAlpha.900' }} fontWeight={params.route === title ? "700" : "500"} fontSize="small" color={params.route === title ? "whiteAlpha.900" : "whiteAlpha.800"}>{title.toUpperCase()}</Text>
-                            </NavLink>
+                            <Link to={item.route}>
+                                <Text _hover={{ color: 'whiteAlpha.900' }} fontWeight={location.pathname === item.route ? "700" : "500"} fontSize="small" color={location.pathname === item.route ? "whiteAlpha.900" : "whiteAlpha.800"}>{item.title.toUpperCase()}</Text>
+                            </Link>
                             <Box flexGrow={1} />
                         </>
                     )

@@ -2,26 +2,31 @@ export const PRIMARY_COLOR = "#668473";
 export const SECONDARY_COLOR = "#66847382";
 export const DARK_PRIMARY = "#33433a";
 
-export const SCROLL_ROUTES = {
-    "home": {
-        multiplier: 0
-    },
-    "eande": {
-        multiplier: 1
-    },
-    "where": {
-        multiplier: 6
-    },
-    "when": {
-        multiplier: 7
-    },
-    "rsvp": {
-        multiplier: 8
-    },
-    "registry": {
-        multiplier: 9
-    },
-}
+export const SCROLL_ROUTES = [{
+    title: 'Home',
+    route: '/',
+    multiplier: 1
+}, {
+    title: 'E & E',
+    route: '/eande',
+    multiplier: 2
+}, {
+    title: 'Where',
+    route: '/where',
+    multiplier: 7
+}, {
+    title: 'When',
+    route: '/when',
+    multiplier: 8
+}, {
+    title: 'Join',
+    route: '/join-us',
+    multiplier: 9
+}, {
+    title: 'Registry',
+    route: '/registry',
+    multiplier: 10
+}]
 
 
 

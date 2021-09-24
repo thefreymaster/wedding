@@ -10,24 +10,31 @@ import { RSVP } from './components/RSVP';
 import { When } from './components/When/index';
 import { useParams } from 'react-router-dom';
 import { SCROLL_ROUTES } from './constants';
+import Routes from './routes';
 
 const App = () => {
   const [page, setPage] = React.useState(0);
-  const params = useParams();
-  console.log(params)
+  // const params = useParams();
+  // console.log(params);
 
-  React.useLayoutEffect(() => {
-    window.scrollTo({
-      top: SCROLL_ROUTES[params.route].multiplier * window.innerHeight,
-      x: 0,
-      behavior: 'smooth'
-    });
-  }, [params.route]);
+  // const scrollWindow = () => {
+  //   debugger;
+  //   window.scrollTo({
+  //     top: SCROLL_ROUTES[params.route].multiplier * window.innerHeight,
+  //     x: 0,
+  //     behavior: 'smooth'
+  //   });
+  // }
+
+  // React.useLayoutEffect(() => {
+  //   scrollWindow()
+  // }, [params.route]);
 
   return (
     <Box display="flex" flexDir="column">
       <Navigation setPage={setPage} page={page} />
-      <Welcome page={page} />
+      <Routes />
+      {/* <Welcome page={page} />
       <WeMet page={page} />
       <WeMoveIn page={page} />
       <WeMove page={page} />
@@ -35,7 +42,7 @@ const App = () => {
       <Us page={page} />
       <Where page={page} />
       <When page={page} />
-      <RSVP page={page} />
+      <RSVP page={page} /> */}
       {/* <ReactPageScroller
         pageOnChange={(pageNumber) => { setPage(pageNumber) }}
         customPageNumber={page}
