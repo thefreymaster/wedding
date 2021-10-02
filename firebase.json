@@ -1,7 +1,6 @@
 {
   "hosting": {
     "public": "build",
-    "site": "elizabethandevan",
     "ignore": [
       "firebase.json",
       "**/.*",

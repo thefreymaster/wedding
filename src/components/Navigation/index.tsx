@@ -1,47 +1,36 @@
 import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
-import { Link, NavLink, useLocation, useParams } from 'react-router-dom';
+import {
+    Box, IconButton, Text, Drawer,
+    DrawerBody,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    useDisclosure,
+    Button,
+} from '@chakra-ui/react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { LogoSVG } from '../../common/Logo';
 import { SCROLL_ROUTES } from '../../constants';
-
-const links = [{
-    title: 'Home',
-    url: '/',
-    next: 1
-}, {
-    title: 'E & E',
-    url: '/eande',
-    next: 2
-}, {
-    title: 'Where',
-    url: '/where',
-    next: 7
-}, {
-    title: 'When',
-    url: '/when',
-    next: 8
-}, {
-    title: 'Join',
-    url: '/join-us',
-    next: 9
-}, {
-    title: 'Registry',
-    url: '/registry',
-    next: 10
-},]
+import { isBrowser, isMobile } from 'react-device-detect';
+import { AiOutlineMenu } from 'react-icons/ai';
 
 export const Navigation = (props: {
     page: number;
     setPage(index: number): void;
 }) => {
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const btnRef = React.useRef()
+
     const location: any = useLocation();
     console.log(location);
     const [animation, setAnimation] = React.useState(location.pathname === '/' ? false : true);
     React.useLayoutEffect(() => {
         setTimeout(() => {
             setAnimation(true)
-        }, 5000);
-    }, [])
+        }, 0);
+    }, []);
 
     return (
         <Box zIndex={100} style={{
@@ -52,7 +41,7 @@ export const Navigation = (props: {
             height: 60,
             position: 'fixed',
             left: 0,
-            backgroundColor: '#668473e6',
+            backgroundColor: '#668473',
             backdropFilter: 'blur(8px)',
         }}>
             <Box
@@ -62,18 +51,60 @@ export const Navigation = (props: {
                 p="1"
                 pl="1"
             >
-                <LogoSVG height={50} width={50} />
+                <NavLink to="/">
+                    <LogoSVG height={50} width={50} />
+                </NavLink>
                 <Box flexGrow={1} />
-                {SCROLL_ROUTES.map((item: any) => {
+                {isBrowser && SCROLL_ROUTES.map((item: any) => {
                     return (
                         <>
                             <Link to={item.route}>
-                                <Text _hover={{ color: 'whiteAlpha.900' }} fontWeight={location.pathname === item.route ? "700" : "500"} fontSize="small" color={location.pathname === item.route ? "whiteAlpha.900" : "whiteAlpha.800"}>{item.title.toUpperCase()}</Text>
+                                <Text _hover={{ color: 'whiteAlpha.900' }} fontWeight={location.pathname.includes(item.route) ? "700" : "500"} fontSize="small" color={location.pathname === item.route ? "whiteAlpha.900" : "whiteAlpha.800"}>{item.title.toUpperCase()}</Text>
                             </Link>
                             <Box flexGrow={1} />
                         </>
                     )
                 })}
+                {isMobile && (
+                    <IconButton onClick={onOpen} mr="2" aria-label="Search database" icon={<AiOutlineMenu />} />
+                )}
+                <Drawer
+                    isOpen={isOpen}
+                    placement="right"
+                    onClose={onClose}
+                >
+                    <DrawerOverlay />
+                    <DrawerContent>
+                        <DrawerCloseButton />
+                        <DrawerHeader></DrawerHeader>
+
+                        <DrawerBody>
+                            {SCROLL_ROUTES.map((item: any) => {
+                                return (
+                                    <>
+                                        <Link to={item.route} onClick={onClose}>
+                                            <Text 
+                                                p={isMobile ? '3' : '0'} 
+                                                _hover={{ color: isMobile ? 'gray.900' : 'whiteAlpha.900' }} 
+                                                fontWeight={location.pathname.includes(item.route) ? "700" : "500"} 
+                                                fontSize={isMobile ? "large" : "small"}
+                                                color={isMobile ? "gray.500" : "whiteAlpha.800"}>
+                                                    {item.title.toUpperCase()}
+                                                </Text>
+                                        </Link>
+                                        <Box flexGrow={1} />
+                                    </>
+                                )
+                            })}
+                        </DrawerBody>
+
+                        <DrawerFooter>
+                            <Button variant="outline" mr={3} onClick={onClose}>
+                                Close
+                            </Button>
+                        </DrawerFooter>
+                    </DrawerContent>
+                </Drawer>
             </Box>
         </Box>
 

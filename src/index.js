@@ -6,6 +6,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import firebase from "firebase/app";
+import { QueryClient, QueryClientProvider } from 'react-query'
 import App from './App';
 
 var firebaseConfig = {
@@ -20,15 +21,19 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+const queryClient = new QueryClient()
+
 ReactDOM.render(
   <React.StrictMode>
-    <ParallaxProvider>
-      <BrowserRouter>
-        <ChakraProvider>
-          <App />
-        </ChakraProvider>
-      </BrowserRouter>
-    </ParallaxProvider>
+    <QueryClientProvider client={queryClient}>
+      <ParallaxProvider>
+        <BrowserRouter>
+          <ChakraProvider>
+            <App />
+          </ChakraProvider>
+        </BrowserRouter>
+      </ParallaxProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

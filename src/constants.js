@@ -19,8 +19,12 @@ export const SCROLL_ROUTES = [{
     route: '/when',
     multiplier: 8
 }, {
-    title: 'Join',
-    route: '/join-us',
+    title: 'Lodging',
+    route: '/lodging',
+    multiplier: 9
+}, {
+    title: 'RSVP',
+    route: '/rsvp',
     multiplier: 9
 }, {
     title: 'Registry',

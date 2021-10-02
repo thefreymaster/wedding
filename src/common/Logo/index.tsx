@@ -5,8 +5,8 @@ import SVG from '../../assets/logo.svg';
 import SKYLINE from '../../assets/skyline.svg';
 
 export const LogoLottie = (props: {
-    width: number | 200,
-    height: number | 200,
+    width?: number | 200,
+    height?: number | 200,
     json: any,
     play?: boolean | true,
 }) => {

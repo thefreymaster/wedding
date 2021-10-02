@@ -5,8 +5,9 @@ import { SkylineSVG } from '../../common/Logo';
 import { ArrowDown } from '../../common/ArrowDown/index';
 import { PrimaryButton } from '../../common/Buttons/index';
 import { Skyline } from '../../common/SVG';
+import { isMobile } from 'react-device-detect';
 
-export const Where = (props: {
+export const Lodging = (props: {
     page: number
 }) => {
     return (
@@ -20,26 +21,29 @@ export const Where = (props: {
             flexDir="column"
         >
             <Box p="1">
-                <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="300" letterSpacing="10px">WHERE</Text>
+                <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="300" letterSpacing="10px">LODGING</Text>
             </Box>
             <Box p="1">
-                <Text color={PRIMARY_COLOR} fontSize="4xl" fontWeight="500" letterSpacing="2px" textAlign="center">COMMONWEATH CAMBRIDGE</Text>
+                <Text color={PRIMARY_COLOR} fontSize={isMobile ? "2xl" : "4xl"} fontWeight="500" letterSpacing="2px" textAlign="center">THE KENDAL HOTEL</Text>
             </Box>
             <Box p="1">
-                <Text color={SECONDARY_COLOR} fontSize="sm" fontWeight="300" textAlign="center">11 BROAD CANAL WAY, CAMBRIDGE, MA 02142</Text>
+                <Text color={SECONDARY_COLOR} fontSize="sm" fontWeight="300" textAlign="center">350 Main St, Cambridge, MA 02142</Text>
             </Box>
+            <Box p="1">
+                <Text color={SECONDARY_COLOR} fontSize="sm" fontWeight="300" textAlign="center">
+                    <a href="tel:+16175771300">+1 617-577-1300</a>
+                </Text>
+            </Box>
+            
             <Box p="1" />
             <PrimaryButton variant="solid" onClick={() => {
-                window.open('https://goo.gl/maps/uaTk52WcF3aSBTNv6', '_blank');
+                window.open('https://goo.gl/maps/XYLyBNvP2bZ9eDcXA', '_blank');
             }}>
                 Open in Google Maps
             </PrimaryButton>
-            {/* <Box p="1">
-                <Text color={PRIMARY_COLOR} fontSize="6xl" fontWeight="200" letterSpacing="20px">CAMBRIDGE, MA</Text>
-            </Box> */}
-            <ArrowDown heightModifier="137%" animate to="/when" bottomFixed>
+            <ArrowDown heightModifier="137%" animate to="/rsvp" bottomFixed>
                 <PrimaryButton variant="solid">
-                    WHEN
+                    RSVP
                 </PrimaryButton>
             </ArrowDown>
             <Skyline timing={200} />
