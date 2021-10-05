@@ -8,10 +8,12 @@ import { validate } from '../../validation/index';
 import { addAttendee } from '../../api/index';
 import { LogoLottie } from '../../common/Logo';
 import SUCCESS from '../../lottie/success.json';
+import { SECONDARY_COLOR, PRIMARY_COLOR } from '../../constants';
 
 export const RSVP = (props: {
     page: number
 }) => {
+    const size = 'md';
     const [isLoading, setIsLoading] = React.useState(false);
     const [isSuccess, setIsSuccess] = React.useState(false);
     const toast = useToast();
@@ -26,13 +28,14 @@ export const RSVP = (props: {
             alignItems="center"
             flexDir="column"
         >
-            <Box minW={isMobile ? "90%" : "40%"}>
-                <Text fontSize="4xl">RSVP</Text>
-                <Text fontSize="md">Please add each attendee individually.  If the attendee is bringing a plus one, please add them individually.</Text>
+            <Box maxW={isMobile ? "90%" : "50%"} padding="8">
+                <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="500" letterSpacing="10px">RSVP</Text>
+                {/* <Text color={PRIMARY_COLOR} fontSize="md" fontWeight="300" >Please add each member of your par</Text> */}
                 <Box p="2" />
                 <Divider />
                 <Box p="2" />
                 <Formik initialValues={{
+                    attending: null,
                     name: '',
                     hasPlusOne: null,
                     plusOneName: ''
@@ -42,51 +45,64 @@ export const RSVP = (props: {
                     {(formProps) => {
                         return (
                             <>
-                                {!isSuccess && <Form>
-                                    <Field name="name">
-                                        {({ field, form }: { field: any, form: any }) => (
-                                            <FormControl colorScheme="red" isRequired isInvalid={form.errors.name && form.touched.name}>
-                                                <FormLabel htmlFor="name">Attendee Name</FormLabel>
-                                                <Input {...field} variant="filled" id="name" placeholder="John Hammond" autoCorrect={false} _autofill={false} />
-                                                <FormHelperText>Not Hammond family, not John Hammond + 1</FormHelperText>
-                                            </FormControl>
+                                {!isSuccess &&
+                                    <Form>
+                                        <Field name="attending">
+                                            {({ field, form }: { field: any, form: any }) => (
+                                                <FormControl isRequired id="traffic" maxWidth="xs">
+                                                    <FormLabel>Will you be attending the wedding reception July 3rd 2022?</FormLabel>
+                                                    <ButtonGroup isAttached style={{ minWidth: "100%" }}>
+                                                        <Button size={size} colorScheme={field.value === false ? "blue" : "gray"} isFullWidth mr="-px" onClick={(e) => form.setFieldValue("attending", false)}>No</Button>
+                                                        <Button size={size} colorScheme={field.value ? "green" : "gray"} isFullWidth mr="-px" onClick={(e) => form.setFieldValue("attending", true)}>Yes</Button>
+                                                    </ButtonGroup>
+                                                </FormControl>
+                                            )}
+                                        </Field>
+                                        <Box p="2" />
+                                        <Field name="name">
+                                            {({ field, form }: { field: any, form: any }) => (
+                                                <FormControl colorScheme="red" isRequired isInvalid={form.errors.name && form.touched.name}>
+                                                    <FormLabel htmlFor="name">Your Name</FormLabel>
+                                                    <Input {...field} size={size} variant="filled" id="name" placeholder="John Hammond" autoCorrect={false} _autofill={false} />
+                                                    <FormHelperText>Please add your name here and your guest's name below. Due to limited capacity, we ask that you do not bring your kiddos.</FormHelperText>
+                                                </FormControl>
+                                            )}
+                                        </Field>
+                                        <Box p="2" />
+                                        <Field name="hasPlusOne">
+                                            {({ field, form }: { field: any, form: any }) => (
+                                                <FormControl isRequired id="traffic" maxWidth="xs">
+                                                    <FormLabel>Are you bringing a plus one?</FormLabel>
+                                                    <ButtonGroup isAttached style={{ minWidth: "100%" }}>
+                                                        <Button size={size} colorScheme={field.value === false ? "blue" : "gray"} isFullWidth mr="-px" onClick={(e) => form.setFieldValue("hasPlusOne", false)}>No</Button>
+                                                        <Button size={size} colorScheme={field.value ? "green" : "gray"} isFullWidth mr="-px" onClick={(e) => form.setFieldValue("hasPlusOne", true)}>Yes</Button>
+                                                    </ButtonGroup>
+                                                </FormControl>
+                                            )}
+                                        </Field>
+                                        <Box p="2" />
+                                        {formProps.values["hasPlusOne"] === true && (
+                                            <Fade in>
+                                                <Field name="plusOneName">
+                                                    {({ field, form }: { field: any, form: any }) => (
+                                                        <FormControl colorScheme="red" isRequired isInvalid={form.errors.name && form.touched.name}>
+                                                            <FormLabel htmlFor="name">Your Plus One's Name</FormLabel>
+                                                            <Input {...field} size={size} variant="filled" id="name" placeholder="John Hammond" autoCorrect={false} _autofill={false} />
+                                                            <FormHelperText>We use this information to sit this person near you, please still add them individually.</FormHelperText>
+                                                        </FormControl>
+                                                    )}
+                                                </Field>
+                                            </Fade>
                                         )}
-                                    </Field>
-                                    <Box p="2" />
-                                    <Field name="hasPlusOne">
-                                        {({ field, form }: { field: any, form: any }) => (
-                                            <FormControl isRequired id="traffic">
-                                                <FormLabel>Is this person a plus one?</FormLabel>
-                                                <ButtonGroup isAttached style={{ minWidth: "100%" }}>
-                                                    <Button colorScheme={field.value === false ? "yellow" : "gray"} isFullWidth mr="-px" onClick={(e) => form.setFieldValue("hasPlusOne", false)}>No</Button>
-                                                    <Button colorScheme={field.value ? "green" : "gray"} isFullWidth mr="-px" onClick={(e) => form.setFieldValue("hasPlusOne", true)}>Yes</Button>
-                                                </ButtonGroup>
-                                            </FormControl>
-                                        )}
-                                    </Field>
-                                    <Box p="2" />
-                                    {formProps.values["hasPlusOne"] === true && (
-                                        <Fade in>
-                                            <Field name="plusOneName">
-                                                {({ field, form }: { field: any, form: any }) => (
-                                                    <FormControl colorScheme="red" isRequired isInvalid={form.errors.name && form.touched.name}>
-                                                        <FormLabel htmlFor="name">Who are they a plus one to?</FormLabel>
-                                                        <Input {...field} variant="filled" id="name" placeholder="John Hammond" autoCorrect={false} _autofill={false} />
-                                                        <FormHelperText>We use this information to sit this person near you, please still add them individually.</FormHelperText>
-                                                    </FormControl>
-                                                )}
-                                            </Field>
-                                        </Fade>
-                                    )}
-                                    <Box p="2" />
-                                    <Divider />
-                                    <Box p="2" />
-                                    <PrimaryButton isLoading={isLoading} style={{ minWidth: "100%" }} variant="solid" disabled={validate({ values: formProps.values })} onClick={async () => {
-                                        addAttendee({ postData: formProps.values, setIsLoading, setIsSuccess, toast })
-                                    }}>
-                                        SUBMIT
-                                    </PrimaryButton>
-                                </Form>}
+                                        <Box p="2" />
+                                        <Divider />
+                                        <Box p="2" />
+                                        <PrimaryButton isLoading={isLoading} style={{ minWidth: "100%" }} variant="solid" disabled={validate({ values: formProps.values })} onClick={async () => {
+                                            addAttendee({ postData: formProps.values, setIsLoading, setIsSuccess, toast })
+                                        }}>
+                                            SUBMIT
+                                        </PrimaryButton>
+                                    </Form>}
                                 {isSuccess && (
                                     <Box display="flex" alignItems="center" justifyContent="center">
                                         <LogoLottie json={SUCCESS} play height={200} width={200} />

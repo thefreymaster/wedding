@@ -1,6 +1,6 @@
-.fade-in-20 {
-    animation         : in-20 linear;
-    animation-duration: 400ms;
+.opacity-20 {
+    /* animation         : in-20 linear;
+    animation-duration: 400ms; */
     opacity: 0.2;
 }
 

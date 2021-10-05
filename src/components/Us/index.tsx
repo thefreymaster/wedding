@@ -8,8 +8,11 @@ import MET from '../../assets/met.jpeg';
 import MOVEIN from '../../assets/movedin.jpeg';
 import BOSTON from '../../assets/boston.jpeg';
 import ENGAGED from '../../assets/engaged.jpeg';
+import PLANEENGAGED from '../../assets/plane-engaged.jpeg';
+
 import { PrimaryButton } from '../../common/Buttons/index';
 import { Skyline } from '../../common/SVG';
+import { isMobile } from 'react-device-detect';
 
 export const WeMet = () => {
     const [animate, setAnimate] = React.useState(false);
@@ -161,7 +164,7 @@ export const WeMove = () => {
             flexDir="column"
         >
             <Box p="1" className={classNames({ "fade-in": animate3, 'invisible': !animate3 })}>
-                <Image src={BOSTON} alt="elizabeth&evan" maxW={280} borderRadius={8} boxShadow="lg" />
+                <Image src={BOSTON} alt="elizabeth&evan" maxW={isMobile ? 280 : 480} borderRadius={8} boxShadow="lg" />
             </Box>
             <Box p="1" pt="4" className={classNames({ "fade-in": animate, 'invisible': !animate })}>
                 <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="500" letterSpacing="5px">JUNE 2021</Text>
@@ -246,21 +249,6 @@ export const WeGetMarried = () => {
     const [animate2, setAnimate2] = React.useState(false);
     const [animate3, setAnimate3] = React.useState(false);
 
-    // document.addEventListener('scroll', function (e) {
-    //     if (window.scrollY > window.innerHeight * 3.5) {
-    //         setTimeout(() => {
-    //             setAnimate2(true);
-    //         }, 1000);
-    //         setTimeout(() => {
-    //             setAnimate(true);
-    //         }, 0);
-    //         setTimeout(() => {
-    //             setAnimate3(true);
-    //         }, 2000);
-    //     }
-    // });
-
-
     React.useLayoutEffect(() => {
         setTimeout(() => {
             setAnimate2(true);
@@ -283,9 +271,9 @@ export const WeGetMarried = () => {
             alignItems="center"
             flexDir="column"
         >
-            {/* <Box p="1" className={classNames({ "fade-in": animate3, 'invisible': !animate3 })}>
-                <Image src={ENGAGED} alt="elizabeth&evan" maxW={400} borderRadius={8} boxShadow="lg" />
-            </Box> */}
+            <Box p="1" className={classNames({ "fade-in": animate3, 'invisible': !animate3 })}>
+                <Image src={PLANEENGAGED} alt="elizabeth&evan" maxW={250} borderRadius={8} boxShadow="lg" />
+            </Box>
             <Box p="1" className={classNames({ "fade-in": animate, 'invisible': !animate })}>
                 <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="500" letterSpacing="5px">JULY 3RD, 2022</Text>
             </Box>

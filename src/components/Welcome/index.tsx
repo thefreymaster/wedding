@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, Fade, Text } from '@chakra-ui/react';
 import { LogoLottie } from '../../common/Logo';
 import JSON from '../../lottie/logo.json';
-import { PRIMARY_COLOR, SECONDARY_COLOR } from '../../constants';
+import { PRIMARY_COLOR, SECONDARY_COLOR, DARK_PRIMARY } from '../../constants';
 import './welcome.css';
 import classNames from 'classnames';
 import { ArrowDown } from '../../common/ArrowDown';
@@ -56,17 +56,17 @@ export const Welcome = (props: {
                 height: '100vh',
             }}
                 display="flex"
-                justifyContent="center"
+                justifyContent="flex-start"
                 alignItems="center"
                 flexDir="column"
+                marginTop="100px"
             >
-                <Box flexGrow={1} />
                 <LogoLottie height={250} width={250} play json={JSON} />
                 <Box p="1" className={classNames({ "fade-in": animate2, 'invisible': !animate2 })}>
                     <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="300" letterSpacing={isMobile ? "5px" : "10px"}>WE'RE GETTING MARRIED</Text>
                 </Box>
                 <Box p="1" className={classNames({ "fade-in": animate, 'invisible': !animate })}>
-                    <Text color={PRIMARY_COLOR} fontSize={isMobile ? "3xl" : "6xl"} fontWeight="300" letterSpacing={isMobile ? "2px" : "20px"}>ELIZABETH & EVAN</Text>
+                    <Text color={DARK_PRIMARY} fontSize={isMobile ? "2xl" : "6xl"} fontWeight="700" letterSpacing={isMobile ? "2px" : "5px"}>ELIZABETH & EVAN</Text>
                 </Box>
                 <Box p="1" className={classNames({ "fade-in": animate4, 'invisible': !animate4 })}>
                     <Text color={SECONDARY_COLOR} fontSize={isMobile ? "1xl" : "2xl"} fontWeight="500" letterSpacing="10px">JULY 3RD, 2022</Text>

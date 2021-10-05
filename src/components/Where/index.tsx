@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Text, Button } from '@chakra-ui/react';
-import { PRIMARY_COLOR, SECONDARY_COLOR } from '../../constants';
+import { DARK_PRIMARY, PRIMARY_COLOR, SECONDARY_COLOR } from '../../constants';
 import { SkylineSVG } from '../../common/Logo';
 import { ArrowDown } from '../../common/ArrowDown/index';
 import { PrimaryButton } from '../../common/Buttons/index';
@@ -20,10 +20,10 @@ export const Where = (props: {
             flexDir="column"
         >
             <Box p="1">
-                <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="300" letterSpacing="10px">WHERE</Text>
+                <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="500" letterSpacing="10px">WHERE</Text>
             </Box>
             <Box p="1">
-                <Text color={PRIMARY_COLOR} fontSize="4xl" fontWeight="500" letterSpacing="2px" textAlign="center">COMMONWEATH CAMBRIDGE</Text>
+                <Text color={DARK_PRIMARY} fontSize="4xl" fontWeight="700" letterSpacing="2px" textAlign="center">COMMONWEATH CAMBRIDGE</Text>
             </Box>
             <Box p="1">
                 <Text color={SECONDARY_COLOR} fontSize="sm" fontWeight="300" textAlign="center">11 BROAD CANAL WAY, CAMBRIDGE, MA 02142</Text>
