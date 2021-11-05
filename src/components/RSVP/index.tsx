@@ -52,6 +52,7 @@ export const RSVP = (props: {
                                         </Field>
                                         <Box p="2" />
                                         <Field name="name">
+                                            
                                             {({ field, form }: { field: any, form: any }) => (
                                                 <FormControl colorScheme="red" isRequired isInvalid={form.errors.name && form.touched.name}>
                                                     <FormLabel htmlFor="name">Your Name</FormLabel>
