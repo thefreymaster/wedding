@@ -13,7 +13,7 @@ export const Lodging = () => {
                 <Text color={DARK_PRIMARY} fontSize="1xl" fontWeight="500" letterSpacing="10px">LODGING</Text>
             </Box>
             <Box p="1">
-                <Text color={DARK_PRIMARY} fontSize={isMobile ? "2xl" : "3xl"} fontWeight="700" letterSpacing="2px" textAlign="center">THE KENDAL HOTEL</Text>
+                <Text color={DARK_PRIMARY} fontSize={isMobile ? "2xl" : "3xl"} fontWeight="700" letterSpacing="2px" textAlign="center">THE KENDALL HOTEL</Text>
             </Box>
             <Box p="1">
                 <Text color={DARK_PRIMARY} fontSize="sm" fontWeight="500" textAlign="center">Use promo code: <Code>BFWG</Code></Text>

@@ -25,7 +25,7 @@ export const addAttendee = ({ postData, setIsLoading, setIsSuccess, toast }) => 
         if (postData.attending) {
             toast({
                 title: "You're confirmed!",
-                description: "We've confirmed you're coming to the wedding.",
+                description: "See ya on the dance floor!",
                 status: "success",
                 duration: 9000,
                 isClosable: true,

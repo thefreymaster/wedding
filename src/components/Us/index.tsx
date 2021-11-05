@@ -305,8 +305,6 @@ export const Us = () => {
         }}>
             <LightGallery
                 onInit={() => { console.log('done') }}
-                speed={500}
-                plugins={[lgThumbnail, lgZoom]}
                 mode="lg-fade"
             >
                 <Box
@@ -316,19 +314,19 @@ export const Us = () => {
                     flexDir="row"
                     flexWrap="wrap"
                 >
-                    {AWS_PHOTOS.map(image => (
-                        <ScaleFade initialScale={0.95} in
-                            transition={{
-                                enter: { duration: Math.random() * (1 - 0) + 1 },
-                                exit: { duration: 0.1 },
-                            }}
-                            style={{ willChange: 'transform' }}
-                        >
-                            <a key={image.src} href={image.src} data-src={image.src}>
-                                <img style={{ width: 400 }} alt={image.src} src={image.src} />
-                            </a>
-                        </ScaleFade>
-                    ))}
+                {AWS_PHOTOS.map(image => (
+                    <ScaleFade initialScale={0.95} in
+                        transition={{
+                            enter: { duration: Math.random() * (1 - 0) + 1 },
+                            exit: { duration: 0.1 },
+                        }}
+                        style={{ willChange: 'transform' }}
+                    >
+                        {/* <a key={image.src} href={image.src} data-src={image.src}> */}
+                            <img style={{ width: 400 }} alt={image.src} src={image.src} />
+                        {/* </a> */}
+                    </ScaleFade>
+                ))}
                 </Box>
             </LightGallery>
             <ArrowDown animate to="/venue">

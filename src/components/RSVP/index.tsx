@@ -55,7 +55,7 @@ export const RSVP = (props: {
                                             {({ field, form }: { field: any, form: any }) => (
                                                 <FormControl colorScheme="red" isRequired isInvalid={form.errors.name && form.touched.name}>
                                                     <FormLabel htmlFor="name">Your Name</FormLabel>
-                                                    <Input {...field} size={size} variant="filled" id="name" placeholder="John Hammond" autoCorrect={false} _autofill={false} />
+                                                    <Input {...field} size={size} variant="filled" id="name" placeholder="First Name Last Name" autoCorrect={false} _autofill={false} />
                                                     <FormHelperText>Please add your name here and your invited guest's name below. Due to limited capacity, we ask that you do not bring your kiddos.</FormHelperText>
                                                 </FormControl>
                                             )}
