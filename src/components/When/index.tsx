@@ -5,13 +5,11 @@ import { PrimaryButton } from '../../common/Buttons/index';
 import { isMobile } from 'react-device-detect';
 import { Skyline } from '../../common/SVG';
 
-export const When = (props: {
-    page: number
-}) => {
+export const When = () => {
     return (
         <Box style={{
             width: 'calc(100vw)',
-            height: '100vh',
+            height: '50vh',
         }}
             display="flex"
             justifyContent="center"

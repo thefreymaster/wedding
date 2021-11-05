@@ -6,13 +6,11 @@ import { ArrowDown } from '../../common/ArrowDown/index';
 import { PrimaryButton } from '../../common/Buttons/index';
 import { Skyline } from '../../common/SVG';
 
-export const Where = (props: {
-    page: number
-}) => {
+export const Where = () => {
     return (
         <Box style={{
             width: 'calc(100vw)',
-            height: '100vh',
+            height: '50vh',
         }}
             display="flex"
             justifyContent="center"

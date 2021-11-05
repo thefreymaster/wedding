@@ -67,3 +67,19 @@ export const getAttendees = ({ setAttendees }) => {
         setAttendees(snapshotValue);
     });
 }
+
+export const getPictures = () => {
+    var storage = firebase.storage();
+    var storageRef = storage.ref('images');
+    storageRef.listAll()
+        .then(({ items }) => {
+            // `url` is the download URL for 'images/stars.jpg'
+            console.log(items)
+            items.forEach(item => console.log(item))
+        })
+        .catch((error) => {
+            console.log(error)
+            debugger
+            // Handle any errors
+        });
+}

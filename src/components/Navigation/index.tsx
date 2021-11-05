@@ -24,7 +24,6 @@ export const Navigation = (props: {
     const btnRef = React.useRef()
 
     const location: any = useLocation();
-    console.log(location);
     const [animation, setAnimation] = React.useState(location.pathname === '/' ? false : true);
     React.useLayoutEffect(() => {
         setTimeout(() => {
@@ -55,16 +54,24 @@ export const Navigation = (props: {
                     <LogoSVG height={50} width={50} />
                 </NavLink>
                 <Box flexGrow={1} />
-                {isBrowser && SCROLL_ROUTES.map((item: any) => {
-                    return (
-                        <>
-                            <Link to={item.route}>
-                                <Text _hover={{ color: 'whiteAlpha.900' }} fontWeight={location.pathname.includes(item.route) ? "700" : "500"} fontSize="small" color={location.pathname === item.route ? "whiteAlpha.900" : "whiteAlpha.800"}>{item.title.toUpperCase()}</Text>
-                            </Link>
-                            <Box flexGrow={1} />
-                        </>
-                    )
-                })}
+                {isBrowser && (
+                    <>
+                        {SCROLL_ROUTES.map((item: any) => {
+                            return (
+                                <>
+                                    <Link to={item.route}>
+                                        <Text _hover={{ color: 'whiteAlpha.900' }} fontWeight={location.pathname === item.route ? "700" : "500"} fontSize="small" color={location.pathname === item.route ? "whiteAlpha.900" : "whiteAlpha.800"}>{item.title.toUpperCase()}</Text>
+                                    </Link>
+                                    <Box flexGrow={1} />
+                                </>
+                            )
+                        })}
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.zola.com/registry/elizabethandevanjuly3">
+                            <Text _hover={{ color: 'whiteAlpha.900' }} fontSize="small" color="whiteAlpha.900">REGISTRY</Text>
+                        </a>
+                        <Box flexGrow={1} />
+                    </>
+                )}
                 {isMobile && (
                     <IconButton onClick={onOpen} mr="2" aria-label="Search database" icon={<AiOutlineMenu />} />
                 )}
@@ -83,14 +90,14 @@ export const Navigation = (props: {
                                 return (
                                     <>
                                         <Link to={item.route} onClick={onClose}>
-                                            <Text 
-                                                p={isMobile ? '3' : '0'} 
-                                                _hover={{ color: isMobile ? 'gray.900' : 'whiteAlpha.900' }} 
-                                                fontWeight={location.pathname.includes(item.route) ? "700" : "500"} 
+                                            <Text
+                                                p={isMobile ? '3' : '0'}
+                                                _hover={{ color: isMobile ? 'gray.900' : 'whiteAlpha.900' }}
+                                                fontWeight={location.pathname.includes(item.route) ? "700" : "500"}
                                                 fontSize={isMobile ? "large" : "small"}
                                                 color={isMobile ? "gray.500" : "whiteAlpha.800"}>
-                                                    {item.title.toUpperCase()}
-                                                </Text>
+                                                {item.title.toUpperCase()}
+                                            </Text>
                                         </Link>
                                         <Box flexGrow={1} />
                                     </>

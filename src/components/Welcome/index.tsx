@@ -34,19 +34,19 @@ export const Welcome = (props: {
     React.useLayoutEffect(() => {
         setTimeout(() => {
             setAnimate(true);
-        }, 4000);
-        setTimeout(() => {
-            setAnimate2(true);
         }, 3000);
         setTimeout(() => {
+            setAnimate2(true);
+        }, 2000);
+        setTimeout(() => {
             setAnimate3(true);
-        }, 6000);
+        }, 5000);
         setTimeout(() => {
             setAnimate4(true);
-        }, 5000);
+        }, 4000);
         setTimeout(() => {
             setAnimate0(true);
-        }, 5000);
+        }, 4000);
     }, []);
 
     return (
@@ -63,7 +63,7 @@ export const Welcome = (props: {
             >
                 <LogoLottie height={250} width={250} play json={JSON} />
                 <Box p="1" className={classNames({ "fade-in": animate2, 'invisible': !animate2 })}>
-                    <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="300" letterSpacing={isMobile ? "5px" : "10px"}>WE'RE GETTING MARRIED</Text>
+                    <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="300" letterSpacing={isMobile ? "5px" : "10px"}>WE'RE GETTING MARRIED!</Text>
                 </Box>
                 <Box p="1" className={classNames({ "fade-in": animate, 'invisible': !animate })}>
                     <Text color={DARK_PRIMARY} fontSize={isMobile ? "2xl" : "6xl"} fontWeight="700" letterSpacing={isMobile ? "2px" : "5px"}>ELIZABETH & EVAN</Text>

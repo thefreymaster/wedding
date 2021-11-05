@@ -9,6 +9,10 @@ import firebase from "firebase/app";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import App from './App';
 
+import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-zoom.css';
+import 'lightgallery/css/lg-thumbnail.css';
+
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,

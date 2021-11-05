@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Image, Text } from '@chakra-ui/react';
-import { PRIMARY_COLOR, SECONDARY_COLOR } from '../../constants';
+import { Box, Image, ScaleFade, Text } from '@chakra-ui/react';
+import { AWS_PHOTOS, PRIMARY_COLOR, SECONDARY_COLOR } from '../../constants';
 import { ArrowDown } from '../../common/ArrowDown/index';
 import classNames from 'classnames';
 
@@ -13,6 +13,10 @@ import PLANEENGAGED from '../../assets/plane-engaged.jpeg';
 import { PrimaryButton } from '../../common/Buttons/index';
 import { Skyline } from '../../common/SVG';
 import { isMobile } from 'react-device-detect';
+
+import LightGallery from 'lightgallery/react';
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import lgZoom from 'lightgallery/plugins/zoom';
 
 export const WeMet = () => {
     const [animate, setAnimate] = React.useState(false);
@@ -291,18 +295,48 @@ export const WeGetMarried = () => {
 }
 
 export const Us = () => {
+
+
+
     return (
-        <>
-            <WeMet />
-            <WeMoveIn />
-            <WeMove />
-            <WeEngaged />
-            <WeGetMarried />
-            <ArrowDown heightModifier="-100%" animate to="/where">
-                <PrimaryButton variant="ghost">
-                    WHERE
+        <Box style={{
+            width: 'calc(100vw)',
+            height: '100vh',
+        }}>
+            <LightGallery
+                onInit={() => { console.log('done') }}
+                speed={500}
+                plugins={[lgThumbnail, lgZoom]}
+                mode="lg-fade"
+            >
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    flexDir="row"
+                    flexWrap="wrap"
+                >
+                    {AWS_PHOTOS.map(image => (
+                        <ScaleFade initialScale={0.95} in
+                            transition={{
+                                enter: { duration: Math.random() * (1 - 0) + 1 },
+                                exit: { duration: 0.1 },
+                            }}
+                            style={{ willChange: 'transform' }}
+                        >
+                            <a key={image.src} href={image.src} data-src={image.src}>
+                                <img style={{ width: 400 }} alt={image.src} src={image.src} />
+                            </a>
+                        </ScaleFade>
+                    ))}
+                </Box>
+            </LightGallery>
+            <ArrowDown animate to="/venue">
+                <PrimaryButton variant="solid">
+                    VENUE
                 </PrimaryButton>
             </ArrowDown>
-        </>
+            <Skyline timing={200} />
+        </Box>
     )
 }
