@@ -21,7 +21,8 @@ export const ArrowDown = (props: {
                 className={classNames({ "invisible": !props.animate })}
                 display="flex"
                 alignItems="center"
-                flexDir="column"
+                justifyContent="center"
+                flexDir="row"
             >
                 <Box className={classNames({ "bounce": props.animate, "invisible": !props.animate })}>
                     {props.to ?
@@ -37,6 +38,14 @@ export const ArrowDown = (props: {
                             {props.children}
                         </Link>
                     </Fade>
+                </Box>
+                <Box className={classNames({ "bounce-right": props.animate, "invisible": !props.animate })}>
+                    {props.to ?
+                        <Link to={props.to || ''}>
+                            <HiChevronDoubleDown color={PRIMARY_COLOR} />
+                        </Link>
+                        : <HiChevronDoubleDown color={PRIMARY_COLOR} />
+                    }
                 </Box>
             </Box>
 

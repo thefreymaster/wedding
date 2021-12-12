@@ -68,18 +68,23 @@ export const getAttendees = ({ setAttendees }) => {
     });
 }
 
-export const getPictures = () => {
+export const getPictures = (setImages) => {
     var storage = firebase.storage();
     var storageRef = storage.ref('images');
+    const images = []
     storageRef.listAll()
         .then(({ items }) => {
-            // `url` is the download URL for 'images/stars.jpg'
-            console.log(items)
-            items.forEach(item => console.log(item))
+            // const urls = items.map(async (item) => {
+            //     const url = await item.getDownloadURL();
+            //     images.push(url);
+            //     return { url };
+            // });
+            setImages(items);
         })
         .catch((error) => {
             console.log(error)
             debugger
             // Handle any errors
         });
+    return images;
 }

@@ -5,11 +5,30 @@ import { PrimaryButton } from '../../common/Buttons/index';
 import { Skyline } from '../../common/SVG';
 import { isMobile } from 'react-device-detect';
 import { Wrapper } from '../../common/Wrapper';
+import { Card, CardFooter } from '../Attractions';
+
+const Description = () => (
+    <Box display="flex" alignItems="flex-start" flexDir="column" marginTop="4">
+        <Text color={DARK_PRIMARY} fontSize="sm" fontWeight="500" textAlign="center">Use promo code: <Code>BFWG</Code></Text>
+        <Text color={DARK_PRIMARY} fontSize="sm" fontWeight="500" textAlign="center">350 Main St, Cambridge, MA 02142</Text>
+    </Box>
+)
 
 export const Lodging = () => {
     return (
         <Wrapper in>
-            <Box p="1">
+            <Box display="flex" flexDir="row">
+                <Card title="THE KENDALL HOTEL" description={<Description />} badge="LODGING" imageSrc="https://elizabethandevan.s3.amazonaws.com/kendall.jpeg">
+                    <CardFooter />
+                </Card>
+                <Card title="BOSTON MARRIOTT CAMBRIDGE" description={<Description />} badge="LODGING" imageSrc="https://elizabethandevan.s3.amazonaws.com/commonwealth.jpeg">
+                    <CardFooter />
+                </Card>
+                <Card title="AIRBNB" description={<Description />} badge="LODGING" imageSrc="https://elizabethandevan.s3.amazonaws.com/commonwealth.jpeg">
+                    <CardFooter />
+                </Card>
+            </Box>
+            {/* <Box p="1">
                 <Text color={DARK_PRIMARY} fontSize="1xl" fontWeight="500" letterSpacing="10px">LODGING</Text>
             </Box>
             <Box p="1">
@@ -63,12 +82,7 @@ export const Lodging = () => {
                 window.open(AIRBNB_CAMBRIDGE_LINK, '_blank');
             }}>
                 Airbnb Cambridge
-            </PrimaryButton>
-            <ArrowDown heightModifier="137%" animate to="/rsvp" bottomFixed>
-                <PrimaryButton variant="solid">
-                    RSVP
-                </PrimaryButton>
-            </ArrowDown>
+            </PrimaryButton> */}
         </Wrapper >
     )
 }
