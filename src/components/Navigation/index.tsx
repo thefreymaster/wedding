@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { LogoSVG } from '../../common/Logo';
-import { SCROLL_ROUTES } from '../../constants';
+import { SCROLL_ROUTES, PRIMARY_COLOR, DARK_PRIMARY } from '../../constants';
 import { isBrowser, isMobile } from 'react-device-detect';
 import { AiOutlineMenu } from 'react-icons/ai';
 
@@ -32,17 +32,19 @@ export const Navigation = (props: {
     }, []);
 
     return (
-        <Box zIndex={100} style={{
-            transform: animation ? 'translateY(0px)' : 'translateY(-100px)',
-            transition: 'transform 500ms cubic-bezier(0.42, 0, 0, 1)',
-            willChange: 'transform',
-            width: '100vw',
-            height: 60,
-            position: 'fixed',
-            left: 0,
-            backgroundColor: '#668473',
-            backdropFilter: 'blur(8px)',
-        }}>
+        <Box zIndex={100}
+            boxShadow="sm"
+            style={{
+                transform: animation ? 'translateY(0px)' : 'translateY(-100px)',
+                transition: 'transform 500ms cubic-bezier(0.42, 0, 0, 1)',
+                willChange: 'transform',
+                width: '100vw',
+                height: 60,
+                position: 'fixed',
+                left: 0,
+                backgroundColor: '#fff',
+                backdropFilter: 'blur(8px)',
+            }}>
             <Box
                 display="flex"
                 justifyContent="center"
@@ -60,14 +62,14 @@ export const Navigation = (props: {
                             return (
                                 <>
                                     <Link to={item.route}>
-                                        <Text _hover={{ color: 'whiteAlpha.900' }} fontWeight={location.pathname === item.route ? "700" : "500"} fontSize="small" color={location.pathname === item.route ? "whiteAlpha.900" : "whiteAlpha.800"}>{item.title.toUpperCase()}</Text>
+                                        <Text _hover={{ color: DARK_PRIMARY }} fontWeight={location.pathname === item.route ? "700" : "500"} fontSize="small" color={PRIMARY_COLOR}>{item.title.toUpperCase()}</Text>
                                     </Link>
                                     <Box flexGrow={1} />
                                 </>
                             )
                         })}
                         <a target="_blank" rel="noopener noreferrer" href="https://www.zola.com/registry/elizabethandevanjuly3">
-                            <Text _hover={{ color: 'whiteAlpha.900' }} fontSize="small" color="whiteAlpha.900">REGISTRY</Text>
+                            <Text _hover={{ color: DARK_PRIMARY }} fontSize="small" color={PRIMARY_COLOR}>REGISTRY</Text>
                         </a>
                         <Box flexGrow={1} />
                     </>

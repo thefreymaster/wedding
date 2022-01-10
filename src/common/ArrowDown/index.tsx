@@ -13,7 +13,7 @@ export const ArrowDown = (props: {
     bottomFixed?: boolean;
 }) => {
     return (
-        <Box position={props.bottomFixed ? 'fixed' : 'inherit'} bottom={props.bottomFixed ? '10px' : 'auto'}>
+        <Box position={props.bottomFixed ? 'absolute' : 'inherit'} top={props.bottomFixed ? 'calc(100vh - 70px)' : 'auto'}>
             <Box style={{
                 position: 'relative',
                 bottom: `calc(100vh - ${props.heightModifier})`
@@ -24,28 +24,17 @@ export const ArrowDown = (props: {
                 justifyContent="center"
                 flexDir="row"
             >
-                <Box className={classNames({ "bounce": props.animate, "invisible": !props.animate })}>
-                    {props.to ?
-                        <Link to={props.to || ''}>
-                            <HiChevronDoubleDown color={PRIMARY_COLOR} />
-                        </Link>
-                        : <HiChevronDoubleDown color={PRIMARY_COLOR} />
-                    }
-                </Box>
                 <Box margin="2" >
                     <Fade in={props.animate}>
-                        <Link to={props.to || ''}>
-                            {props.children}
-                        </Link>
+                        <Box className={classNames({ "bounce": props.animate, "invisible": !props.animate })}>
+                            {props.to ?
+                                <Link to={props.to || ''}>
+                                    <HiChevronDoubleDown color={PRIMARY_COLOR} />
+                                </Link>
+                                : <HiChevronDoubleDown color={PRIMARY_COLOR} />
+                            }
+                        </Box>
                     </Fade>
-                </Box>
-                <Box className={classNames({ "bounce-right": props.animate, "invisible": !props.animate })}>
-                    {props.to ?
-                        <Link to={props.to || ''}>
-                            <HiChevronDoubleDown color={PRIMARY_COLOR} />
-                        </Link>
-                        : <HiChevronDoubleDown color={PRIMARY_COLOR} />
-                    }
                 </Box>
             </Box>
 

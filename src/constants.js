@@ -13,15 +13,15 @@ export const SCROLL_ROUTES = [{
     route: '/eande',
 }, 
 {
-    title: 'VENUE',
-    route: '/venue',
+    title: 'THE DAY',
+    route: '/theday',
 },
 {
     title: 'LODGING',
     route: '/lodging',
 }, 
 {
-    title: 'ATTRACTIONS',
+    title: 'LOCAL ATTRACTIONS',
     route: '/attractions',
 }, 
 {

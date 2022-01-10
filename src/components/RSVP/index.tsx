@@ -3,8 +3,7 @@ import { Box, Button, ButtonGroup, Divider, Fade, FormControl, FormHelperText, F
 import { Field, Form, Formik } from 'formik';
 import { PrimaryButton } from '../../common/Buttons';
 import { isMobile } from 'react-device-detect';
-import { validate } from '../../validation/index';
-import { addAttendee } from '../../api/index';
+import { getInvite } from '../../api/index';
 import { LogoLottie } from '../../common/Logo';
 import SUCCESS from '../../lottie/success.json';
 import { SECONDARY_COLOR } from '../../constants';
@@ -13,6 +12,9 @@ import { Wrapper } from '../../common/Wrapper';
 export const RSVP = (props: {
     page: number
 }) => {
+    React.useLayoutEffect(() => {
+        getInvite();
+    }, [])
     const size = 'md';
     const [isLoading, setIsLoading] = React.useState(false);
     const [isSuccess, setIsSuccess] = React.useState(false);
@@ -90,11 +92,11 @@ export const RSVP = (props: {
                                         <Box p="2" />
                                         <Divider />
                                         <Box p="2" />
-                                        <PrimaryButton isLoading={isLoading} style={{ minWidth: "100%" }} variant="solid" disabled={validate({ values: formProps.values })} onClick={async () => {
+                                        {/* <PrimaryButton isLoading={isLoading} style={{ minWidth: "100%" }} variant="solid" disabled={validate({ values: formProps.values })} onClick={async () => {
                                             addAttendee({ postData: formProps.values, setIsLoading, setIsSuccess, toast })
                                         }}>
                                             SUBMIT
-                                        </PrimaryButton>
+                                        </PrimaryButton> */}
                                     </Form>}
                                 {isSuccess && (
                                     <Box display="flex" alignItems="center" justifyContent="center">

@@ -9,6 +9,7 @@ import { isMobile } from 'react-device-detect';
 import { Skyline } from '../../common/SVG/index';
 import Schedule from '../Schedule';
 import { Legal } from '../Legal';
+import { ArrowDown } from '../../common/ArrowDown';
 
 export const Welcome = (props: {
     page: number
@@ -40,27 +41,35 @@ export const Welcome = (props: {
                 flexDir="column"
                 marginTop="100px"
             >
-                <LogoLottie height={250} width={250} play json={JSON} />
-                <Box p="1" className={classNames({ "fade-in": animate2, 'invisible': !animate2 })}>
-                    <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="300" letterSpacing={isMobile ? "5px" : "10px"}>WE'RE GETTING MARRIED!</Text>
-                </Box>
-                <Box p="1" className={classNames({ "fade-in": animate, 'invisible': !animate })}>
-                    <Text color={DARK_PRIMARY} fontSize={isMobile ? "2xl" : "6xl"} fontWeight="700" letterSpacing={isMobile ? "2px" : "5px"}>ELIZABETH & EVAN</Text>
-                </Box>
-                <Box
+                <Box minH="calc(100vh - 60px)"
                     display="flex"
-                    justifyContent="center"
-                    flexDir="row"
+                    justifyContent="flex-start"
                     alignItems="center"
-                    paddingTop="10"
+                    flexDir="column"
                 >
-                    <Box p="1" className={classNames({ "fade-in": animate4, 'invisible': !animate4 })}>
-                        <Text color={SECONDARY_COLOR} fontSize={isMobile ? "1xl" : "2xl"} fontWeight="500" letterSpacing="10px">JULY 3RD, 2022</Text>
+                    <LogoLottie height={250} width={250} play json={JSON} />
+                    <Box p="1" className={classNames({ "fade-in": animate2, 'invisible': !animate2 })}>
+                        <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="300" letterSpacing={isMobile ? "5px" : "10px"}>WE'RE GETTING MARRIED!</Text>
                     </Box>
-                    <Box className={classNames({ "fade-in": animate4, 'invisible': !animate4 })} borderRight="2px solid #b6c4bc" minH="100px" marginRight="15" marginLeft="15" />
-                    <Box p="1" className={classNames({ "fade-in": animate4, 'invisible': !animate4 })}>
-                        <Text color={SECONDARY_COLOR} fontSize={isMobile ? "1xl" : "2xl"} fontWeight="500" letterSpacing="10px">CAMBRIDGE, MA</Text>
+                    <Box p="1" className={classNames({ "fade-in": animate, 'invisible': !animate })}>
+                        <Text color={DARK_PRIMARY} fontSize={isMobile ? "2xl" : "6xl"} fontWeight="700" letterSpacing={isMobile ? "2px" : "5px"}>ELIZABETH & EVAN</Text>
                     </Box>
+                    <Box
+                        display="flex"
+                        justifyContent="center"
+                        flexDir="row"
+                        alignItems="center"
+                        paddingTop="10"
+                    >
+                        <Box p="1" className={classNames({ "fade-in": animate4, 'invisible': !animate4 })}>
+                            <Text textAlign="center" color={SECONDARY_COLOR} fontSize={isMobile ? "1xl" : "2xl"} fontWeight="500" letterSpacing="10px">JULY 3RD, 2022</Text>
+                        </Box>
+                        <Box className={classNames({ "fade-in": animate4, 'invisible': !animate4 })} borderRight="2px solid #b6c4bc" minH="100px" marginRight="15" marginLeft="15" />
+                        <Box p="1" className={classNames({ "fade-in": animate4, 'invisible': !animate4 })}>
+                            <Text textAlign="center" color={SECONDARY_COLOR} fontSize={isMobile ? "1xl" : "2xl"} fontWeight="500" letterSpacing="10px">CAMBRIDGE, MA</Text>
+                        </Box>
+                    </Box>
+                    <ArrowDown bottomFixed animate={animate4} />
                 </Box>
                 <Box flexGrow={1} />
                 <Box className={classNames({ "fade-in": animate4, 'invisible': !animate4 })}>

@@ -1,24 +1,23 @@
 import React from 'react';
-import { ArrowDown } from '../../common/ArrowDown/index';
-import { PrimaryButton } from '../../common/Buttons/index';
 import { Skyline } from '../../common/SVG';
 import { Box } from '@chakra-ui/layout';
 
 import 'lightgallery/css/lightgallery.css';
 import 'lightgallery/css/lg-zoom.css';
 import 'lightgallery/css/lg-thumbnail.css';
-import { getPictures } from '../../api';
-import { ScaleFade, Image as ChakraImage } from '@chakra-ui/react';
+import { getImage, getPictures } from '../../api';
+import { ScaleFade, Image as ChakraImage, Spinner } from '@chakra-ui/react';
 
 const Image = (props: {
     image: any
 }) => {
-    const [imageUrl, setImageUrl] = React.useState();
+    const [imageUrl, setImageUrl] = React.useState('');
     const [displayImage, setDisplayImage] = React.useState(false);
+    const [isLoaded, setIsLoaded] = React.useState(false);
 
     React.useLayoutEffect(() => {
         const getImages = async () => {
-            const url = await props.image.getDownloadURL();
+            const url = await getImage(props.image.fullPath);
             setImageUrl(url);
             setTimeout(() => {
                 setDisplayImage(true);
@@ -31,9 +30,19 @@ const Image = (props: {
         return null;
     }
     return (
-        <ScaleFade initialScale={0.9} in={displayImage} >
-            <ChakraImage border="1px solid #9d9d9d" borderRadius="4" margin="1" objectFit='cover' boxSize='300px' alt={imageUrl} src={imageUrl} />
-        </ScaleFade>
+        <>
+            {!isLoaded && (
+                <Box boxSize="300px" display="flex" alignItems="center" justifyContent="center">
+                    <Spinner />
+                </Box>
+            )}
+            <ScaleFade initialScale={0.9} in={displayImage}>
+                <ChakraImage onLoad={() => {
+                    setIsLoaded(true);
+                    console.log('done')
+                }} loading="lazy" border="1px solid #c9c9c9" borderRadius="4" margin="1" objectFit='cover' boxSize='300px' alt={imageUrl} src={imageUrl} />
+            </ScaleFade>
+        </>
     )
 }
 

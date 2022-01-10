@@ -3,23 +3,22 @@
     animation-duration       : 2000ms;
     animation-iteration-count: infinite;
     will-change              : transform;
-    transform                : rotate(45deg)
 }
 
 @keyframes bounce-in {
     0% {
         opacity  : 0.3;
-        transform: translateX(-20px) rotate(270deg);
+        transform: translateY(-20px);
     }
 
     50% {
         opacity  : 1;
-        transform: translateX(0px)  rotate(270deg)
+        transform: translateY(0px) 
     }
 
     100% {
         opacity  : 0.3;
-        transform: translateX(-20px) rotate(270deg)
+        transform: translateY(-20px)
     }
 }
 
