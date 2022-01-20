@@ -8,7 +8,8 @@ import { LogoLottie } from '../../common/Logo';
 import SUCCESS from '../../lottie/success.json';
 import { SECONDARY_COLOR } from '../../constants';
 import { Wrapper } from '../../common/Wrapper';
-import { attendees } from '../../data/attendees';
+import { pretty } from '../../data/attendees';
+import { debounce } from 'lodash.debounce';
 
 export const RSVP = (props: {
     page: number
@@ -26,15 +27,18 @@ export const RSVP = (props: {
         // console.log(event.target.value);
         // console.log(attendees);
         // eslint-disable-next-line array-callback-return
-        const results: any = await Object.entries(attendees).filter(([key, value]) => {
+        const results: any = await Object.entries(pretty).filter(([key, value]) => {
             if (key.toLowerCase().includes(event.target.value.toLowerCase())) {
                 return {
                     [key]: value
                 }
             }
         })
-        if(results.length !== Object.entries(attendees).length){
+        if (results.length !== Object.entries(pretty).length) {
             setNewResults(results);
+        }
+        else {
+            setNewResults([]);
         }
         console.log(results);
     }
@@ -78,10 +82,10 @@ export const RSVP = (props: {
                                 }}>
                                     Add Another Invitee
                                 </PrimaryButton>}
-                                {newResults?.map(([key, value]) => {
+                                {newResults?.map(([key, value]: [key: any, value: any]) => {
                                     return (
-                                        <Box>
-                                            {key}
+                                        <Box _hover={{ cursor: 'pointer', boxShadow: 'lg' }} transition="box-shadow 200ms ease-in-out" padding="10px 20px" marginTop="10px" borderRadius="md" border="2px solid #cccccc">
+                                            {value?.prettyName}
                                         </Box>
                                     )
                                 })}
