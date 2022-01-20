@@ -20,7 +20,7 @@ export const Card = (props: { boxSize?: string; title: string; description: Reac
                 }} minHeight="300px" maxHeight="300px" minW="md" objectFit='cover' boxSize={props.boxSize} src={props.imageSrc} />
             </ScaleFade>
 
-            <Box p="6" display="flex" flexGrow={1} flexDir="column">
+            <Box p="6" display="flex" flexGrow={1} flexDir="column" minW="100%">
                 <Box display="flex" alignItems="baseline">
                     <Badge borderRadius="full" px="2" colorScheme="gray">
                         {props.badge}
