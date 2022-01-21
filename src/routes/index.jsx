@@ -9,6 +9,7 @@ import { Attendees } from '../components/Attendees/index';
 import { Registry } from '../components/Registry/index';
 import { Venue } from '../components/Venue/index';
 import { Attractions } from '../components/Attractions/index';
+import { Found } from '../components/RSVP/Found';
 
 const Router = () => {
     return (
@@ -33,6 +34,9 @@ const Router = () => {
             </Route>
             <Route exact path="/rsvp">
                 <RSVP />
+            </Route>
+            <Route exact path="/rsvp/found">
+                <Found />
             </Route>
             <Route exact path="/attendees">
                 <Attendees />
