@@ -8,7 +8,7 @@ import { LogoLottie } from '../../common/Logo';
 import SUCCESS from '../../lottie/success.json';
 import { SECONDARY_COLOR } from '../../constants';
 import { Wrapper } from '../../common/Wrapper';
-import { pretty } from '../../data/attendees';
+import { prettyAttendees } from '../../data/attendees';
 import { useHistory } from 'react-router-dom';
 
 const Result = (props: {
@@ -41,14 +41,14 @@ export const RSVP = (props: {
         // console.log(event.target.value);
         // console.log(attendees);
         // eslint-disable-next-line array-callback-return
-        const results: any = await Object.entries(pretty).filter(([key, value]) => {
+        const results: any = await Object.entries(prettyAttendees).filter(([key, value]) => {
             if (key.toLowerCase().includes(event.target.value.toLowerCase())) {
                 return {
                     [key]: value
                 }
             }
         })
-        if (results.length !== Object.entries(pretty).length) {
+        if (results.length !== Object.entries(prettyAttendees).length) {
             setNewResults(results);
         }
         else {

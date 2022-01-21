@@ -13,8 +13,8 @@ export const SCROLL_ROUTES = [{
     route: '/eande',
 }, 
 {
-    title: 'THE DAY',
-    route: '/theday',
+    title: 'FAQ',
+    route: '/faq',
 },
 {
     title: 'LODGING',

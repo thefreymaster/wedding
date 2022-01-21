@@ -73,13 +73,13 @@ export const Attractions = () => {
                 <Card
                     badge="PARKS"
                     title="Charles River Esplanade"
-                    description="Explore the park system around the Charles River bordered by Cambridge and Boston."
+                    description="Explore the park system around the Charles River bordered by Cambridge and Boston"
                     imageSrc="https://elizabethandevan.s3.amazonaws.com/charlesriver.jpeg"
                 />
                 <Card
                     badge="FOOD"
                     title="North End"
-                    description="The old italian district in Boston, feast on classic italian eats."
+                    description="The old italian district in Boston, feast on classic italian eats"
                     imageSrc="https://elizabethandevan.s3.amazonaws.com/northend2.jpeg"
                 />
                 <Card
@@ -91,11 +91,11 @@ export const Attractions = () => {
                 <Card
                     badge="SITES"
                     title="Harvard Yard"
-                    description="Explore history Harvard and the many amenities it has to offer"
+                    description="The oldest part of Harvard University"
                     imageSrc="https://elizabethandevan.s3.amazonaws.com/harvard.jpeg"
                 />
                 <Card
-                    badge="SITES"
+                    badge="PARKS"
                     title="Boston Common"
                     description="Discover all 50 acres of the oldest city park in the United States"
                     imageSrc="https://elizabethandevan.s3.amazonaws.com/bostoncommon.jpeg"

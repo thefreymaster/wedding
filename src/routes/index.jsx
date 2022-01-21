@@ -20,7 +20,7 @@ const Router = () => {
             <Route exact path="/eande">
                 <Us />
             </Route>
-            <Route exact path="/theday">
+            <Route exact path="/faq">
                 <Venue />
             </Route>
             <Route exact path="/when">

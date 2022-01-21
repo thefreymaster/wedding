@@ -1,7 +1,7 @@
 export const attendees = {
     "KathyJimFreymiller": {
         "isAttending": false,
-        "hasPlusOne": false,
+        "hasPlusOne": true,
         "hasPlusOneAttending": false,
     },
     "CissieJoeButler": {
@@ -291,12 +291,12 @@ export const attendees = {
     }
 };
 
-export const pretty = {
+export const prettyAttendees = {
     'KathyJimFreymiller': {
         'id': 'KathyJimFreymiller',
         'prettyName': 'Kathy & Jim Freymiller',
         "isAttending": false,
-        "hasPlusOne": false,
+        "hasPlusOne": true,
         "hasPlusOneAttending": false,
     },
     'CissieJoeButler': {
