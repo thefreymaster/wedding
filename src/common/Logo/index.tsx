@@ -9,10 +9,11 @@ export const LogoLottie = (props: {
     height?: number | 200,
     json: any,
     play?: boolean | true,
+    loop?: number | 0;
 }) => {
     return (
         <Lottie
-            loop={0}
+            loop={props.loop}
             animationData={props.json}
             play={props.play}
             style={{ width: props.width, height: props.height }}

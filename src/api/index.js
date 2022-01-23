@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app"
 import { collection, getDocs, getFirestore, query, where, setDoc, doc } from "firebase/firestore";
-import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+import { getStorage, ref as sRef, listAll, getDownloadURL } from "firebase/storage";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 
 import "firebase/compat/analytics";
 import "firebase/compat/auth";
@@ -24,6 +25,28 @@ const db = getFirestore(firebaseApp);
 
 export const unFormatName = (name) => {
     return name.replace(/\s/g, ' ')
+}
+
+export const getAttendees = (setAttendees) => {
+    const db = getDatabase();
+    const attendeeDbRef = ref(db, 'attendees/');
+    onValue(attendeeDbRef, (snapshot) => {
+        const data = snapshot.val();
+        setAttendees(data);
+        console.log(data);
+    });
+}
+
+export const setAttendee = async ({ attendeeId, data, setIsLoading, setIsSuccess }) => {
+    setIsLoading(true);
+    try {
+        const db = getDatabase();
+        await set(ref(db, 'attendees/' + attendeeId), data);
+        setIsLoading(false);
+        setIsSuccess(true);
+    } catch (error) {
+        setIsLoading(false);
+    }
 }
 
 // export const addAttendee = ({ postData, setIsLoading, setIsSuccess, toast }) => {
@@ -84,7 +107,7 @@ export const unFormatName = (name) => {
 
 export const getPictures = (setImages) => {
     var storage = getStorage();
-    var storageRef = ref(storage, 'images');
+    var storageRef = sRef(storage, 'images');
     const images = []
     listAll(storageRef)
         .then(({ items }) => {

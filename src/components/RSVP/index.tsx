@@ -3,12 +3,11 @@ import { Box, Divider, FormControl, FormHelperText, FormLabel, Input, Text } fro
 import { Field, Form, Formik } from 'formik';
 import { PrimaryButton } from '../../common/Buttons';
 import { isMobile } from 'react-device-detect';
-import { getInvite } from '../../api/index';
+import { getAttendees, getInvite } from '../../api/index';
 import { LogoLottie } from '../../common/Logo';
 import SUCCESS from '../../lottie/success.json';
 import { SECONDARY_COLOR } from '../../constants';
 import { Wrapper } from '../../common/Wrapper';
-import { prettyAttendees } from '../../data/attendees';
 import { useHistory } from 'react-router-dom';
 
 const Result = (props: {
@@ -36,19 +35,22 @@ export const RSVP = (props: {
     const [isLoading, setIsLoading] = React.useState(false);
     const [isSuccess, setIsSuccess] = React.useState(false);
     const [newResults, setNewResults] = React.useState([]);
+    const [attendees, setAttendees] = React.useState({});
+
+    React.useLayoutEffect(() => {
+        console.log(attendees)
+        getAttendees(setAttendees);
+    }, [])
 
     const handleSearch = async (event: any) => {
-        // console.log(event.target.value);
-        // console.log(attendees);
-        // eslint-disable-next-line array-callback-return
-        const results: any = await Object.entries(prettyAttendees).filter(([key, value]) => {
+        const results: any = await Object.entries(attendees).filter(([key, value]) => {
             if (key.toLowerCase().includes(event.target.value.toLowerCase())) {
                 return {
                     [key]: value
                 }
             }
         })
-        if (results.length !== Object.entries(prettyAttendees).length) {
+        if (results.length !== Object.entries(attendees).length) {
             setNewResults(results);
         }
         else {
@@ -64,9 +66,14 @@ export const RSVP = (props: {
         }, 200);
     }
 
+
+    if (!attendees) {
+        return null;
+    }
+
     return (
         <Wrapper in={animate} justifyContent="flex-start">
-            <Box maxW={isMobile ? "90%" : "50%"} minW={isMobile ? "90%" : "50%"} padding="8">
+            <Box maxW={isMobile ? "90%" : "40%"} minW={isMobile ? "90%" : "40%"} padding="8">
                 <Text color={SECONDARY_COLOR} fontSize="1xl" fontWeight="500" letterSpacing="10px">RSVP</Text>
                 <Box p="2" />
                 <Divider />
