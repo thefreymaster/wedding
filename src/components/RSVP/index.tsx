@@ -29,7 +29,6 @@ export const RSVP = (props: {
     const history = useHistory();
 
     const [animate, setAnimate] = React.useState(true);
-    const [isLoading, setIsLoading] = React.useState(false);
     const [isSuccess, setIsSuccess] = React.useState(false);
     const [newResults, setNewResults] = React.useState([]);
     const [attendees, setAttendees] = React.useState({});
@@ -41,7 +40,7 @@ export const RSVP = (props: {
 
     const handleSearch = async (event: any) => {
         const results: any = await Object.entries(attendees).filter(([key, value]) => {
-            if (key.toLowerCase().includes(event.target.value.toLowerCase())) {
+            if (key.toLowerCase().includes(event.target.value.replace(" ", "").toLowerCase())) {
                 return {
                     [key]: value
                 }
@@ -53,7 +52,6 @@ export const RSVP = (props: {
         else {
             setNewResults([]);
         }
-        console.log(results);
     }
 
     const handleFadeOut = (attendee: any) => {
@@ -62,7 +60,6 @@ export const RSVP = (props: {
             history.push('/rsvp/found', { attendee })
         }, 200);
     }
-
 
     if (!attendees) {
         return null;
@@ -80,7 +77,7 @@ export const RSVP = (props: {
                 }}
                     onSubmit={(values) => { console.log(values) }}
                 >
-                    {(formProps) => {
+                    {() => {
                         return (
                             <>
                                 {!isSuccess &&
