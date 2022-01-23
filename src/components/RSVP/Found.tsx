@@ -131,7 +131,8 @@ export const Found = () => {
                                     <Box p="2" />
                                     <PrimaryButton isLoading={isLoading} style={{ minWidth: "100%" }} variant="solid" disabled={validate({ values: formProps.values }) || isLoading}
                                         onClick={async () => {
-                                            await setAttendee({ data: formProps?.values, attendeeId: formProps?.values?.id, setIsLoading, setIsSuccess })
+                                            await setAttendee({ data: formProps?.values, attendeeId: formProps?.values?.id, setIsLoading, setIsSuccess });
+                                            formProps.resetForm();
                                         }}>
                                         SUBMIT
                                     </PrimaryButton>

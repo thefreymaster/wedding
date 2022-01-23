@@ -3,7 +3,7 @@ import { Box, Divider, FormControl, FormHelperText, FormLabel, Input, Text } fro
 import { Field, Form, Formik } from 'formik';
 import { PrimaryButton } from '../../common/Buttons';
 import { isMobile } from 'react-device-detect';
-import { getAttendees, getInvite } from '../../api/index';
+import { getAttendees } from '../../api/index';
 import { LogoLottie } from '../../common/Logo';
 import SUCCESS from '../../lottie/success.json';
 import { SECONDARY_COLOR } from '../../constants';
@@ -25,9 +25,6 @@ const Result = (props: {
 export const RSVP = (props: {
     page: number
 }) => {
-    React.useLayoutEffect(() => {
-        getInvite();
-    }, [])
     const size = 'md';
     const history = useHistory();
 
@@ -102,14 +99,6 @@ export const RSVP = (props: {
                                     <Box display="flex" alignItems="center" justifyContent="center">
                                         <LogoLottie json={SUCCESS} play height={200} width={200} />
                                     </Box>
-                                )}
-                                {isSuccess && (
-                                    <PrimaryButton isLoading={isLoading} style={{ minWidth: "100%" }} variant="solid" onClick={() => {
-                                        setIsSuccess(false);
-                                        formProps.resetForm();
-                                    }}>
-                                        Add Another Invitee
-                                    </PrimaryButton>
                                 )}
                                 {newResults?.map(([key, value]: [key: any, value: any]) => {
                                     return (

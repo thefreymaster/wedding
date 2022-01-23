@@ -5,7 +5,7 @@ import { Box } from '@chakra-ui/layout';
 import 'lightgallery/css/lightgallery.css';
 import 'lightgallery/css/lg-zoom.css';
 import 'lightgallery/css/lg-thumbnail.css';
-import { getImage, getPictures } from '../../api';
+import { getImage, getPictures } from '../../api/storage';
 import { ScaleFade, Image as ChakraImage, Spinner } from '@chakra-ui/react';
 
 const Image = (props: {
