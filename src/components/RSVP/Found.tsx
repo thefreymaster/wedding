@@ -16,7 +16,7 @@ const CONFIRMED = "You're Confirmed";
 const NOW = "Now ";
 const LETS = "Let's "
 const PARTY = "Party!";
-console.log(PARTY.split(""));
+const NOW_LETS_PARTY = "Now Let's Party!";
 
 const Character = (props: {
     index: number;
@@ -137,28 +137,50 @@ export const Found = () => {
                                     </PrimaryButton>
                                 </Form>}
                                 {isSuccess && (
-                                    <Box display="flex" flexDir={isMobile ? "column" : "row"} alignItems="center" justifyContent="center">
-                                        <Box display="flex" alignItems="center" justifyContent="center">
-                                            <LogoLottie loop={10000} json={CELEBRATE} play height={200} width={200} />
-                                        </Box>
-                                        <Box display="flex" flexDir="column" minW="50vw">
+                                    isMobile ?
+                                        <Box display="flex" flexDir={isMobile ? "column" : "row"} alignItems="center" justifyContent="center">
                                             <Box display="flex" alignItems="center" justifyContent="center">
-                                                <Fade in={isSuccess}>
-                                                    <Text style={{ fontFamily: "FakeSerif" }} color={DARK_PRIMARY} fontSize="1xl" fontWeight="700" letterSpacing="2px">
-                                                        {CONFIRMED}
-                                                    </Text>
-                                                </Fade>
+                                                <LogoLottie loop={10000} json={CELEBRATE} play height={200} width={200} />
                                             </Box>
-                                            <Box display="flex" flexDir={isMobile ? "column" : "row"} alignItems="center" justifyContent="center">
-                                                <Box display="flex" flexDir="row">{NOW.split("").map((c, i) => <Character index={i} character={c} timing={timing} setTiming={setTiming} />)}</Box>
-                                                <Box display="flex" flexDir="row">{LETS.split("").map((c, i) => <Character index={i} character={c} timing={timing} setTiming={setTiming} />)}</Box>
-                                                <Box display="flex" flexDir="row">{PARTY.split("").map((c, i) => <Character index={i} character={c} timing={timing} setTiming={setTiming} />)}</Box>
+                                            <Box display="flex" flexDir="column" minW="50vw">
+                                                <Box display="flex" alignItems="center" justifyContent="center">
+                                                    <Fade in={isSuccess}>
+                                                        <Text style={{ fontFamily: "FakeSerif" }} color={DARK_PRIMARY} fontSize="1xl" fontWeight="700" letterSpacing="2px">
+                                                            {CONFIRMED}
+                                                        </Text>
+                                                    </Fade>
+                                                </Box>
+                                                <Box display="flex" flexDir={isMobile ? "column" : "row"} alignItems="center" justifyContent="center">
+                                                    <Box display="flex" flexDir="row">{NOW.split("").map((c, i) => <Character index={i} character={c} timing={timing} setTiming={setTiming} />)}</Box>
+                                                    <Box display="flex" flexDir="row">{LETS.split("").map((c, i) => <Character index={i} character={c} timing={timing} setTiming={setTiming} />)}</Box>
+                                                    <Box display="flex" flexDir="row">{PARTY.split("").map((c, i) => <Character index={i} character={c} timing={timing} setTiming={setTiming} />)}</Box>
+                                                </Box>
+                                            </Box>
+                                            <Box display="flex" alignItems="center" justifyContent="center">
+                                                <LogoLottie loop={10000} json={CELEBRATE} play height={200} width={200} />
                                             </Box>
                                         </Box>
-                                        <Box display="flex" alignItems="center" justifyContent="center">
-                                            <LogoLottie loop={10000} json={CELEBRATE} play height={200} width={200} />
+                                        :
+                                        <Box display="flex" flexDir={isMobile ? "column" : "row"} alignItems="center" justifyContent="center">
+                                            <Box display="flex" alignItems="center" justifyContent="center">
+                                                <LogoLottie loop={10000} json={CELEBRATE} play height={200} width={200} />
+                                            </Box>
+                                            <Box display="flex" flexDir="column" minW="50vw">
+                                                <Box display="flex" alignItems="center" justifyContent="center">
+                                                    <Fade in={isSuccess}>
+                                                        <Text style={{ fontFamily: "FakeSerif" }} color={DARK_PRIMARY} fontSize="1xl" fontWeight="700" letterSpacing="2px">
+                                                            {CONFIRMED}
+                                                        </Text>
+                                                    </Fade>
+                                                </Box>
+                                                <Box display="flex" alignItems="center" justifyContent="center">
+                                                    {NOW_LETS_PARTY.split("").map((c, i) => <Character index={i} character={c} timing={timing} setTiming={setTiming} />)}
+                                                </Box>
+                                            </Box>
+                                            <Box display="flex" alignItems="center" justifyContent="center">
+                                                <LogoLottie loop={10000} json={CELEBRATE} play height={200} width={200} />
+                                            </Box>
                                         </Box>
-                                    </Box>
                                 )}
                                 {/* {isSuccess && <PrimaryButton isLoading={isLoading} style={{ minWidth: "100%" }} variant="solid" onClick={() => {
                                     setIsSuccess(false);
