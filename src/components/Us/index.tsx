@@ -6,7 +6,7 @@ import { Box } from "@chakra-ui/layout";
 import "lightgallery/css/lightgallery.css";
 import "lightgallery/css/lg-zoom.css";
 import "lightgallery/css/lg-thumbnail.css";
-import { getImage, getPictures } from "../../api/storage";
+import { getImage, getPictures } from "../../api";
 import { ScaleFade, Image as ChakraImage, Spinner } from "@chakra-ui/react";
 
 const Image = (props: { image: any }) => {
@@ -74,7 +74,7 @@ const shuffleArray = (array: any) => {
   return array;
 };
 
-export const Us = () => {
+const Us = () => {
   const [images, setImages] = React.useState([]);
 
   React.useLayoutEffect(() => {
@@ -82,7 +82,11 @@ export const Us = () => {
   }, []);
 
   if (images.length === 0) {
-    return "loading";
+    return (
+      <>
+        <Spinner />
+      </>
+    );
   }
   const shuffledImages = shuffleArray(images);
   return (
@@ -96,3 +100,5 @@ export const Us = () => {
     </Box>
   );
 };
+
+export default Us;

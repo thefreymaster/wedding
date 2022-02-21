@@ -31,12 +31,6 @@ export const When = () => {
             }}>
                 Add to Calendar
             </PrimaryButton>
-
-            <ArrowDown heightModifier="135%" animate to="/lodging" bottomFixed>
-                <PrimaryButton variant="solid">
-                    LODGING
-                </PrimaryButton>
-            </ArrowDown>
             <Skyline timing={200} />
         </Box>
     )

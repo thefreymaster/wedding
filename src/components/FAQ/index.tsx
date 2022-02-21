@@ -17,7 +17,7 @@ const events = [
   {
     title: "What to Wear",
     blurb:
-      "Cocktail attire is welcome, but wear what makes you comfortable!  It's cummer in New England, don't forget a light jacket.",
+      "Cocktail attire is welcome, but wear what makes you comfortable!  It's summer in New England, don't forget a light jacket.",
   },
   {
     title: "Where is the Wedding and Reception?",
@@ -39,7 +39,7 @@ const events = [
   },
 ];
 
-export const FAQ = () => {
+const FAQ = () => {
   return (
     <Wrapper in>
       <Box display="flex" flexDir="column" justifyContent="center">
@@ -87,3 +87,5 @@ export const FAQ = () => {
     </Wrapper>
   );
 };
+
+export default FAQ;

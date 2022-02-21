@@ -110,7 +110,7 @@ export const CardFooter = (props: {
   </Box>
 );
 
-export const Attractions = () => {
+const Attractions = () => {
   return (
     <Box>
       <Box
@@ -170,3 +170,5 @@ export const Attractions = () => {
     </Box>
   );
 };
+
+export default Attractions;

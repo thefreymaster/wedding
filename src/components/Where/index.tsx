@@ -1,8 +1,6 @@
 import React from 'react';
-import { Box, Text, Button } from '@chakra-ui/react';
-import { DARK_PRIMARY, PRIMARY_COLOR, SECONDARY_COLOR } from '../../constants';
-import { SkylineSVG } from '../../common/Logo';
-import { ArrowDown } from '../../common/ArrowDown/index';
+import { Box, Text } from '@chakra-ui/react';
+import { DARK_PRIMARY, SECONDARY_COLOR } from '../../constants';
 import { PrimaryButton } from '../../common/Buttons/index';
 import { Skyline } from '../../common/SVG';
 
@@ -32,14 +30,6 @@ export const Where = () => {
             }}>
                 Open in Google Maps
             </PrimaryButton>
-            {/* <Box p="1">
-                <Text color={PRIMARY_COLOR} fontSize="6xl" fontWeight="200" letterSpacing="20px">CAMBRIDGE, MA</Text>
-            </Box> */}
-            <ArrowDown heightModifier="137%" animate to="/when" bottomFixed>
-                <PrimaryButton variant="solid">
-                    WHEN
-                </PrimaryButton>
-            </ArrowDown>
             <Skyline timing={200} />
         </Box >
     )

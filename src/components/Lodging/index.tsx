@@ -23,7 +23,8 @@ const Description = (props: {
     <Text
       color={DARK_PRIMARY}
       fontSize="sm"
-      fontWeight="500"
+      fontWeight="300"
+      as="i"
       textAlign="center"
     >
       {props.address}
@@ -31,7 +32,7 @@ const Description = (props: {
   </Box>
 );
 
-export const Lodging = () => {
+const Lodging = () => {
   return (
     <Wrapper in justifyContent="flex-start">
       <Box display="flex" flexDir={isMobile ? "column" : "row"}>
@@ -75,8 +76,11 @@ export const Lodging = () => {
                 flexDir="column"
                 justifyContent="flex-start"
               >
+                <Box textAlign="left" mb="2">
+                  <Code>BFWBFWA</Code> (For a King Bed)
+                </Box>
                 <Box textAlign="left">
-                  Use promo code: <Code>BFWG</Code>
+                  <Code>BFWBFWD</Code> (For 2 Queen Beds)
                 </Box>
               </Box>
             </Description>
@@ -111,61 +115,8 @@ export const Lodging = () => {
           />
         </Card>
       </Box>
-      {/* <Box p="1">
-                <Text color={DARK_PRIMARY} fontSize="1xl" fontWeight="500" letterSpacing="10px">LODGING</Text>
-            </Box>
-            <Box p="1">
-                <Text color={DARK_PRIMARY} fontSize={isMobile ? "2xl" : "3xl"} fontWeight="700" letterSpacing="2px" textAlign="center">THE KENDALL HOTEL</Text>
-            </Box>
-            <Box p="1">
-                <Text color={DARK_PRIMARY} fontSize="sm" fontWeight="500" textAlign="center">Use promo code: <Code>BFWG</Code></Text>
-            </Box>
-            <Box p="1">
-                <Text color={DARK_PRIMARY} fontSize="sm" fontWeight="500" textAlign="center">350 Main St, Cambridge, MA 02142</Text>
-            </Box>
-
-            <Box p="1">
-                <Text color={DARK_PRIMARY} fontSize="sm" fontWeight="500" textAlign="center">
-                    <a href="tel:+16175771300">+1 617-577-1300</a>
-                </Text>
-            </Box>
-            <PrimaryButton variant="solid" onClick={() => {
-                window.open('https://goo.gl/maps/XYLyBNvP2bZ9eDcXA', '_blank');
-            }}>
-                Open in Google Maps
-            </PrimaryButton>
-
-            <Box p="5" />
-            <Box p="1">
-                <Text color={DARK_PRIMARY} fontSize={isMobile ? "2xl" : "3xl"} fontWeight="700" letterSpacing="1px" textAlign="center">BOSTON MARRIOTT CAMBRIDGE</Text>
-            </Box>
-            <Box p="1">
-                <Text color={DARK_PRIMARY} fontSize="sm" fontWeight="500" textAlign="center">50 BROADWAY, CAMBRIDGE, MA 02142</Text>
-            </Box>
-            <Box p="1">
-                <Text color={DARK_PRIMARY} fontSize="sm" fontWeight="500" textAlign="center">
-                    <a href="tel:+16174946600">+1 617-494-6600</a>
-                </Text>
-            </Box>
-            <PrimaryButton variant="solid" onClick={() => {
-                window.open('https://goo.gl/maps/wjUzH9jx8gTfzA6x7', '_blank');
-            }}>
-                Open in Google Maps
-            </PrimaryButton>
-
-            <Box p="1" />
-
-            <Box p="5" />
-            <Box p="1">
-                <Text color={DARK_PRIMARY} fontSize={isMobile ? "2xl" : "3xl"} fontWeight="700" letterSpacing="1px" textAlign="center">AIRBNB</Text>
-            </Box>
-            <Box p="1" />
-
-            <PrimaryButton variant="solid" onClick={() => {
-                window.open(AIRBNB_CAMBRIDGE_LINK, '_blank');
-            }}>
-                Airbnb Cambridge
-            </PrimaryButton> */}
     </Wrapper>
   );
 };
+
+export default Lodging;

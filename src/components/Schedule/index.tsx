@@ -1,25 +1,31 @@
-import { Box, Link, Text } from "@chakra-ui/layout";
+import { Box, Text } from "@chakra-ui/layout";
 import { DARK_PRIMARY, SECONDARY_COLOR } from "../../constants";
 import { IconButton, Tag, Tooltip } from "@chakra-ui/react";
-import { IoMdMap } from "react-icons/io";
+import { BiMap } from "react-icons/bi";
+import { isMobile } from "react-device-detect";
+import { GoCalendar } from "react-icons/go";
 
 const events = [
   {
-    time: "5:00pm - 7:00pm, July 2nd",
+    time: "5:00pm - 7:00pm, July 2nd, 2022",
     title: "Welcome Reception",
     description:
       "We're inviting all of our guests on Saturday evening to join us for an early celebration",
     business: "Russell House Tavern",
     address: "14 John F. Kennedy St, Cambridge, MA 02138",
     url: "https://g.page/russellhousetav?share",
+    invite:
+      "https://calendar.google.com/event?action=TEMPLATE&tmeid=MjMwM3Vqbm9hMGtqanQ1dXNwYmhuZnM2ZTggZWFuZGUwOTI4QG0&tmsrc=eande0928%40gmail.com",
   },
   {
-    time: "5:00pm July 3rd",
+    time: "5:00pm July 3rd, 2022",
     title: "Ceremony",
     description: "Elizabeth & Evan tie the knot",
     business: "Commonwealth",
     address: "Second Floor, 11 Broad Canal Way, Cambridge, MA 02142",
     url: "https://goo.gl/maps/LkPR2UrTGSKKM5iMA",
+    invite:
+      "https://calendar.google.com/event?action=TEMPLATE&tmeid=MXBvdTd0NHRpNWhpbmxvNXFhZ2dndWgyazYgZWFuZGUwOTI4QG0&tmsrc=eande0928%40gmail.com",
   },
   {
     time: "5:30pm - 6:30pm",
@@ -51,10 +57,9 @@ const Title = () => (
   </Text>
 );
 
-const Schedule = () => {
-  // if (isMobile) {
+const Schedule = (props: { ref: any }) => {
   return (
-    <Box display="flex" flexDir="column" paddingBottom="20">
+    <Box display="flex" flexDir="column" paddingBottom="20" ref={props.ref}>
       <Title />
       {events.map((event) => (
         <Box
@@ -75,30 +80,16 @@ const Schedule = () => {
           />
           <Box display="flex" flexDir="column" justifyContent="center">
             <Box display="flex" flexDir="row" marginBottom="2">
-              <Box display="flex" alignItems="flex-end">
-                <Text color={DARK_PRIMARY} fontSize="2xl" fontWeight="900">
+              <Box display="flex" alignItems="center">
+                <Text
+                  color={DARK_PRIMARY}
+                  fontSize={isMobile ? "lg" : "2xl"}
+                  fontWeight="900"
+                >
                   {event.title}
                 </Text>
               </Box>
               <Box display="flex" flexGrow={1} />
-              <Tag size="md">
-                <Text color={DARK_PRIMARY} fontSize="1xl" fontWeight="500">
-                  {event.time}
-                </Text>
-              </Tag>
-              {event?.url && (
-                <Tooltip label='Map Directions'>
-                  <IconButton
-                    size="md"
-                    href={event?.url}
-                    target="_blank"
-                    ml="2"
-                    aria-label="map"
-                    as="a"
-                    icon={<IoMdMap />}
-                  />
-                </Tooltip>
-              )}
             </Box>
             <Box>
               <Text color={DARK_PRIMARY} fontSize="1xl" fontWeight="500">
@@ -116,52 +107,40 @@ const Schedule = () => {
               </Text>
             </Box>
           </Box>
-        </Box>
-      ))}
-    </Box>
-  );
-  // }
-  return (
-    <Box display="flex" flexDir="column" paddingBottom="20">
-      <Title />
-      {events.map((event) => (
-        <Box display="flex" flexDir="row" minH="100px" marginBottom="20">
-          <Box display="flex" flexDir="column" justifyContent="center">
-            <Text
-              color={DARK_PRIMARY}
-              fontSize="1xl"
-              fontWeight="500"
-              letterSpacing="10px"
-            >
-              {event.time}
-            </Text>
-          </Box>
-          <Box
-            marginLeft="10"
-            paddingRight="10"
-            borderLeft="2px solid #b6c4bc"
-          />
-          <Box display="flex" flexDir="column" justifyContent="center">
-            <Box display="flex" alignItems="flex-end">
-              <Text
-                color={DARK_PRIMARY}
-                fontSize="1xl"
-                fontWeight="900"
-                letterSpacing="5px"
-              >
-                {event.title}
-              </Text>
-            </Box>
-            <Box>
+          <Box mt="2" pt="2" borderTop="2px dotted" borderTopColor="gray.200" />
+          <Box display="flex" flexDir="row" minH="40px">
+            <Tag size="md">
               <Text color={DARK_PRIMARY} fontSize="1xl" fontWeight="500">
-                {event.description}
+                {event.time}
               </Text>
-            </Box>
-            <Box>
-              <Text color={DARK_PRIMARY} fontSize="1xl" fontWeight="500">
-                {event.address}
-              </Text>
-            </Box>
+            </Tag>
+            <Box flex={1} />
+            {event?.invite && (
+              <Tooltip label="Add To Calendar">
+                <IconButton
+                  variant="solid"
+                  size="md"
+                  aria-label="calendar"
+                  onClick={() => {
+                    window.open(event?.invite, "_blank");
+                  }}
+                  icon={<GoCalendar />}
+                />
+              </Tooltip>
+            )}
+            {event?.url && (
+              <Tooltip label="Map Directions">
+                <IconButton
+                  size="md"
+                  href={event?.url}
+                  target="_blank"
+                  ml="2"
+                  aria-label="map"
+                  as="a"
+                  icon={<BiMap />}
+                />
+              </Tooltip>
+            )}
           </Box>
         </Box>
       ))}

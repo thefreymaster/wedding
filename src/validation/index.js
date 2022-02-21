@@ -2,7 +2,7 @@ export const validate = ({ values }) => {
   const { isAttending, hasPlusOne, hasPlusOneAttending, isAttendingWelcome } =
     values;
 
-    if (hasPlusOne) {
+  if (hasPlusOne) {
     if (
       isAttending !== undefined &&
       hasPlusOneAttending !== undefined &&
@@ -13,7 +13,7 @@ export const validate = ({ values }) => {
     return true;
   }
   if (!hasPlusOne) {
-    if (isAttending !== null) {
+    if (isAttending !== undefined && isAttendingWelcome !== undefined) {
       return false;
     }
     return true;

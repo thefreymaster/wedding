@@ -1,14 +1,8 @@
 import { initializeApp } from "firebase/app";
-import {
-  collection,
-  getDocs,
-  getFirestore,
-  query,
-  where,
-  setDoc,
-  doc,
-} from "firebase/firestore";
 import { getDatabase, ref, onValue, set } from "firebase/database";
+import { getAuth, signInAnonymously } from "firebase/auth";
+import { getPerformance } from "firebase/performance";
+import { getStorage, ref as storRef, listAll, getDownloadURL } from "firebase/storage";
 
 import "firebase/compat/analytics";
 import "firebase/compat/auth";
@@ -25,10 +19,14 @@ var firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
-initializeApp(firebaseConfig);
-const firebaseApp = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const perf = getPerformance(app);
+const auth = getAuth();
 
-const db = getFirestore(firebaseApp);
+export const signIn = () =>
+  signInAnonymously(auth)
+    .then((acc) => {})
+    .catch((error) => {});
 
 export const unFormatName = (name) => {
   return name.replace(/\s/g, " ");
@@ -40,7 +38,6 @@ export const getAttendees = (setAttendees) => {
   onValue(attendeeDbRef, (snapshot) => {
     const data = snapshot.val();
     setAttendees(data);
-    console.log(data);
   });
 };
 
@@ -63,3 +60,23 @@ export const setAttendee = async ({
     setIsLoading(false);
   }
 };
+
+export const getPictures = (setImages) => {
+  var storage = getStorage();
+  var storageRef = storRef(storage, 'images');
+  const images = []
+  listAll(storageRef)
+      .then(({ items }) => {
+          setImages(items);
+      })
+      .catch((error) => {
+          console.log(error)
+      });
+  return images;
+}
+
+export const getImage = async (url) => {
+  const storage = getStorage();
+  const imageUrl = await getDownloadURL(storRef(storage, url));
+  return imageUrl;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { LogoLottie } from "../../common/Logo";
 import JSON from "../../lottie/flutes.json";
@@ -11,7 +11,8 @@ import Schedule from "../Schedule";
 import { Legal } from "../Legal";
 import { ArrowDown } from "../../common/ArrowDown";
 
-export const Welcome = (props: { page: number }) => {
+const Welcome = () => {
+  const ref = useRef();
   const [animate, setAnimate] = React.useState(false);
   const [animate2, setAnimate2] = React.useState(false);
   const [animate4, setAnimate4] = React.useState(false);
@@ -50,7 +51,7 @@ export const Welcome = (props: { page: number }) => {
           <LogoLottie
             scale="scale(2)"
             height={250}
-            width={250}
+            width={isMobile ? 180 : 250}
             play
             json={JSON}
             style={{ marginLeft: -25 }}
@@ -137,11 +138,11 @@ export const Welcome = (props: { page: number }) => {
               </Text>
             </Box>
           </Box>
-          <ArrowDown bottomFixed animate={animate4} />
+          <ArrowDown ref={ref} bottomFixed animate={animate4} />
         </Box>
         <Box flexGrow={1} />
         <Box className={classNames({ "fade-in": true })}>
-          <Schedule />
+          <Schedule ref={ref} />
         </Box>
         <Legal />
       </Box>
@@ -149,3 +150,5 @@ export const Welcome = (props: { page: number }) => {
     </Box>
   );
 };
+
+export default Welcome;

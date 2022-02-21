@@ -11,7 +11,7 @@ import {
 import { Field, Form, Formik } from "formik";
 import { PrimaryButton } from "../../common/Buttons";
 import { isMobile } from "react-device-detect";
-import { getAttendees } from "../../api/index";
+import { getAttendees, signIn } from "../../api/index";
 import { LogoLottie } from "../../common/Logo";
 import SUCCESS from "../../lottie/success.json";
 import { SECONDARY_COLOR } from "../../constants";
@@ -37,7 +37,7 @@ const Result = (props: { prettyName: string; attendee: any; onClick: any }) => {
   );
 };
 
-export const RSVP = (props: { page: number }) => {
+const RSVP = (props: { page: number }) => {
   const size = "md";
   const history = useHistory();
 
@@ -47,7 +47,6 @@ export const RSVP = (props: { page: number }) => {
   const [attendees, setAttendees] = React.useState({});
 
   React.useLayoutEffect(() => {
-    console.log(attendees);
     getAttendees(setAttendees);
   }, []);
 
@@ -72,8 +71,9 @@ export const RSVP = (props: { page: number }) => {
     }
   };
 
-  const handleFadeOut = (attendee: any) => {
+  const handleFadeOut = async(attendee: any) => {
     setAnimate(false);
+    await signIn();
     setTimeout(() => {
       history.push("/rsvp/found", { attendee });
     }, 200);
@@ -86,9 +86,9 @@ export const RSVP = (props: { page: number }) => {
   return (
     <Wrapper in={animate} justifyContent="flex-start">
       <Box
-        maxW={isMobile ? "90%" : "40%"}
-        minW={isMobile ? "90%" : "40%"}
-        padding="8"
+        maxW={isMobile ? "98%" : "40%"}
+        minW={isMobile ? "98%" : "40%"}
+        padding={isMobile ? "4" : "8"}
       >
         <Text
           color={SECONDARY_COLOR}
@@ -170,3 +170,5 @@ export const RSVP = (props: { page: number }) => {
     </Wrapper>
   );
 };
+
+export default RSVP;

@@ -2,7 +2,7 @@ import { Box, Divider, Text } from '@chakra-ui/react';
 import { Skyline } from '../../common/SVG';
 import { isMobile } from 'react-device-detect';
 
-export const Registry = () => {
+const Registry = () => {
     return (
         <Box style={{
             width: 'calc(100vw)',
@@ -23,3 +23,5 @@ export const Registry = () => {
         </Box>
     )
 }
+
+export default Registry;

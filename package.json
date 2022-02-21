@@ -1,6 +1,6 @@
 {
-  "name": "eande",
-  "version": "0.1.0",
+  "name": "elizabethandevan.com",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^1.6.8",
@@ -11,7 +11,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.22.0",
     "classnames": "^2.3.1",
-    "firebase": "^9.6.1",
+    "firebase": "^9.6.6",
     "formik": "^2.2.9",
     "framer-motion": "^4",
     "lightgallery": "^2.3.0",
@@ -34,7 +34,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "npm run build && firebase deploy"

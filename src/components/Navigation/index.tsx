@@ -38,7 +38,6 @@ export const Navigation = (props: {
   }, []);
 
   const getActiveItem = (item: { title: string; route: string }) => {
-    console.log({ location, history, item });
     if (location.pathname === "/" && item.route === "/") {
       return "bold";
     }
@@ -115,6 +114,7 @@ export const Navigation = (props: {
           <IconButton
             onClick={onOpen}
             mr="2"
+            backgroundColor="white"
             aria-label="Search database"
             icon={<AiOutlineMenu />}
           />
@@ -135,9 +135,8 @@ export const Navigation = (props: {
                         _hover={{
                           color: isMobile ? "gray.900" : "whiteAlpha.900",
                         }}
-                        fontWeight={
-                          location.pathname.includes(item.route) ? "700" : "500"
-                        }
+                        // @ts-ignore
+                        fontWeight={() => getActiveItem(item)}
                         fontSize={isMobile ? "large" : "small"}
                         color={isMobile ? "gray.500" : "whiteAlpha.800"}
                       >
@@ -148,6 +147,22 @@ export const Navigation = (props: {
                   </>
                 );
               })}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.zola.com/registry/elizabethandevanjuly3"
+              >
+                <Text
+                  p={isMobile ? "3" : "0"}
+                  _hover={{
+                    color: isMobile ? "gray.900" : "whiteAlpha.900",
+                  }}
+                  fontSize={isMobile ? "large" : "small"}
+                  color={isMobile ? "gray.500" : "whiteAlpha.800"}
+                >
+                  REGISTRY
+                </Text>
+              </a>
             </DrawerBody>
 
             <DrawerFooter>
