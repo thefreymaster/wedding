@@ -73,45 +73,17 @@ const Welcome = () => {
           </Box>
           <Box
             p="1"
+            paddingTop="10"
             className={classNames({ "fade-in": animate, invisible: !animate })}
           >
-            {isMobile ? (
-              <Box display="flex" flexDir="column" alignItems="center" paddingTop="10">
-                <Text
-                  color={DARK_PRIMARY}
-                  fontSize={isMobile ? "3xl" : "6xl"}
-                  fontWeight="700"
-                  letterSpacing={isMobile ? "2px" : "5px"}
-                >
-                  ELIZABETH
-                </Text>
-                <Text
-                  color={DARK_PRIMARY}
-                  fontSize={isMobile ? "3xl" : "6xl"}
-                  fontWeight="700"
-                  letterSpacing={isMobile ? "2px" : "5px"}
-                >
-                  &
-                </Text>
-                <Text
-                  color={DARK_PRIMARY}
-                  fontSize={isMobile ? "3xl" : "6xl"}
-                  fontWeight="700"
-                  letterSpacing={isMobile ? "2px" : "5px"}
-                >
-                  EVAN
-                </Text>
-              </Box>
-            ) : (
-              <Text
-                color={DARK_PRIMARY}
-                fontSize={isMobile ? "2xl" : "6xl"}
-                fontWeight="700"
-                letterSpacing={isMobile ? "2px" : "5px"}
-              >
-                ELIZABETH & EVAN
-              </Text>
-            )}
+            <Text
+              color={DARK_PRIMARY}
+              fontSize={isMobile ? "3xl" : "6xl"}
+              fontWeight="700"
+              letterSpacing={isMobile ? "2px" : "5px"}
+            >
+              ELIZABETH & EVAN
+            </Text>
           </Box>
           <Box
             display="flex"
@@ -166,7 +138,12 @@ const Welcome = () => {
               </Text>
             </Box>
           </Box>
-          <ArrowDown ref={ref} bottomFixed animate={animate4} />
+          <ArrowDown
+            bottom={isMobile ? " - 200px" : " - 80px"}
+            ref={ref}
+            bottomFixed
+            animate={animate4}
+          />
         </Box>
         <Box flexGrow={1} />
         <Box className={classNames({ "fade-in": true })}>

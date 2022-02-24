@@ -3,12 +3,14 @@ import { Box, Fade } from "@chakra-ui/react";
 import "./arrow-down.css";
 import classNames from "classnames";
 import { PRIMARY_COLOR } from "../../constants";
+import { isMobile } from "react-device-detect";
 
 export const ArrowDown = (props: {
   animate?: boolean;
   heightModifier?: string;
   children?: React.ReactNode;
   bottomFixed?: boolean;
+  bottom?: string;
   ref: any;
 }) => {
   return (
@@ -16,10 +18,12 @@ export const ArrowDown = (props: {
       position={props.bottomFixed ? "absolute" : "inherit"}
       padding="20px"
       borderRadius="10px"
-      top={props.bottomFixed ? "calc(100vh - 70px)" : "auto"}
+      top={
+        props.bottomFixed ? `calc(100vh ${props.bottom ?? " - 80px"})` : "auto"
+      }
       onClick={() =>
         window.scrollTo({
-          top: window.innerHeight + 30,
+          top: window.innerHeight + (isMobile ? 100 : 30),
           left: 0,
           behavior: "smooth",
         })

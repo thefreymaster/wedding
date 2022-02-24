@@ -298,6 +298,7 @@ const Found = () => {
                 >
                   SUBMIT
                 </PrimaryButton>
+                <Box mt="1" pt="2" />
               </Form>
             );
           }}

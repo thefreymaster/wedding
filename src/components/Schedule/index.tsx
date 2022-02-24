@@ -67,7 +67,7 @@ const Schedule = (props: { ref: any }) => {
           flexDir="column"
           minH="100px"
           margin="20px 20px 0px 20px"
-          padding="20px"
+          padding={isMobile ? "10px" : "20px"}
           border="0px solid #0000001a"
           boxShadow="inner"
           borderRadius="8px"

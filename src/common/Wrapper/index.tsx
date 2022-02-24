@@ -17,8 +17,8 @@ export const Wrapper = (props: { children: React.ReactNode, in: boolean, justify
                     flexDir="column"
                 >
                     {props.children}
+                    <Legal />
                 </Box>
-                <Legal />
             </ScaleFade>
         </>
     )

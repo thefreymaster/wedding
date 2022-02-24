@@ -4,11 +4,11 @@ import { isMobile } from 'react-device-detect';
 
 export const Legal = () => {
   return (
-    <Box position="absolute" bottom="0px" left="50px">
+    <Box position="absolute" bottom="0px">
       <Text
         color={SECONDARY_COLOR}
         paddingBottom="4"
-        fontSize={isMobile ? "xs" : "sm"}
+        fontSize={isMobile ? "10px" : "sm"}
         fontWeight="500"
         letterSpacing="2px"
       >
