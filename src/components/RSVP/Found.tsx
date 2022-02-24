@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import React from "react";
-import { isMobile } from "react-device-detect";
+import { isMobile, isTablet } from "react-device-detect";
 import { useHistory, useLocation } from "react-router-dom";
 import { PrimaryButton } from "../../common/Buttons";
 import { Wrapper } from "../../common/Wrapper";
@@ -30,16 +30,22 @@ const Found = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
 
+  const getWidth = () => {
+    if (isMobile) {
+      return "98%";
+    }
+    if (isTablet) {
+      return "60%";
+    }
+    return "40%";
+  };
+
   if (!state?.attendee) {
     history.push("/rsvp");
   }
   return (
     <Wrapper in justifyContent={isSuccess ? "center" : "flex-start"}>
-      <Box
-        maxW={isMobile ? "100%" : "40%"}
-        minW={isMobile ? "100%" : "40%"}
-        padding={isMobile ? "4" : "8"}
-      >
+      <Box maxW={getWidth()} minW={getWidth()} padding={isMobile ? "4" : "8"}>
         <Box p="1">
           <Text
             color={DARK_PRIMARY}
@@ -203,24 +209,12 @@ const Found = () => {
                   borderTop="2px dotted"
                   borderTopColor="gray.200"
                 />
-                <FormControl>
-                  <FormHelperText>
-                    We will require all guests attending our wedding be fully
-                    vaccinated against COVID-19. We must prioritize the health
-                    and safety of our friends and family at this time. Thank you
-                    for understanding and respecting our wishes.
-                  </FormHelperText>
-                </FormControl>
-                <Box
-                  mt="2"
-                  pt="2"
-                  borderTop="2px dotted"
-                  borderTopColor="gray.200"
-                />
                 <Field name="foodAlergies">
                   {({ field, form }: { field: any; form: any }) => (
                     <FormControl id="foodAlergies">
-                      <FormLabel fontSize="sm">Please provide any food allergies</FormLabel>
+                      <FormLabel fontSize="sm">
+                        Please provide any food allergies
+                      </FormLabel>
                       <Textarea
                         resize="vertical"
                         {...field}
@@ -250,7 +244,27 @@ const Found = () => {
                     </FormControl>
                   )}
                 </Field>
-                <Box p="2" />
+                <FormControl>
+                  <FormHelperText
+                    padding="10px"
+                    border="2px dotted"
+                    borderColor="gray.200"
+                    backgroundColor="white"
+                    borderRadius="8px"
+                    boxShadow="sm"
+                  >
+                    We will require all guests attending our wedding be fully
+                    vaccinated against COVID-19. We must prioritize the health
+                    and safety of our friends and family at this time. Thank you
+                    for understanding and respecting our wishes.
+                  </FormHelperText>
+                </FormControl>
+                <Box
+                  mt="2"
+                  pt="2"
+                  borderTop="2px dotted"
+                  borderTopColor="gray.200"
+                />
                 <PrimaryButton
                   isLoading={isLoading}
                   style={{

@@ -9,8 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
-import { PrimaryButton } from "../../common/Buttons";
-import { isMobile } from "react-device-detect";
+import { isMobile, isTablet } from "react-device-detect";
 import { getAttendees, signIn } from "../../api/index";
 import { LogoLottie } from "../../common/Logo";
 import SUCCESS from "../../lottie/success.json";
@@ -21,6 +20,7 @@ import { useHistory } from "react-router-dom";
 const Result = (props: { prettyName: string; attendee: any; onClick: any }) => {
   return (
     <Box
+      key={props.attendee.id}
       onClick={() => props.onClick(props.attendee)}
       _hover={{ cursor: "pointer", boxShadow: "lg" }}
       _active={{ boxShadow: "inner", borderWidth: 0 }}
@@ -42,7 +42,7 @@ const RSVP = (props: { page: number }) => {
   const history = useHistory();
 
   const [animate, setAnimate] = React.useState(true);
-  const [isSuccess, setIsSuccess] = React.useState(false);
+  const [isSuccess] = React.useState(false);
   const [newResults, setNewResults] = React.useState([]);
   const [attendees, setAttendees] = React.useState({});
 
@@ -71,7 +71,7 @@ const RSVP = (props: { page: number }) => {
     }
   };
 
-  const handleFadeOut = async(attendee: any) => {
+  const handleFadeOut = async (attendee: any) => {
     setAnimate(false);
     await signIn();
     setTimeout(() => {
@@ -83,13 +83,19 @@ const RSVP = (props: { page: number }) => {
     return null;
   }
 
+  const getWidth = () => {
+    if (isMobile) {
+      return "98%";
+    }
+    if (isTablet) {
+      return "60%";
+    }
+    return "40%";
+  };
+
   return (
     <Wrapper in={animate} justifyContent="flex-start">
-      <Box
-        maxW={isMobile ? "98%" : "40%"}
-        minW={isMobile ? "98%" : "40%"}
-        padding={isMobile ? "4" : "8"}
-      >
+      <Box maxW={getWidth()} minW={getWidth()} padding={isMobile ? "4" : "8"}>
         <Text
           color={SECONDARY_COLOR}
           fontSize="1xl"
@@ -112,47 +118,36 @@ const RSVP = (props: { page: number }) => {
           {() => {
             return (
               <>
-                {!isSuccess && (
-                  <Form autoComplete="off">
-                    <Field name="name" autoComplete="off">
-                      {({ field, form }: { field: any; form: any }) => (
-                        <FormControl
-                          autoComplete="off"
-                          onChange={handleSearch}
-                          colorScheme="red"
-                          isRequired
-                          isInvalid={form.errors.name && form.touched.name}
-                        >
-                          <FormLabel htmlFor="name">
-                            Find your invitation
-                          </FormLabel>
-                          <Input
-                            {...field}
-                            size={size}
-                            variant="filled"
-                            id="name"
-                            placeholder="First Name Last Name"
-                            autoComplete={false}
-                            autoCorrect={false}
-                            _autofill={false}
-                          />
-                          <FormHelperText>
-                            Please search your name here to find your invitation
-                          </FormHelperText>
-                        </FormControl>
-                      )}
-                    </Field>
-                  </Form>
-                )}
-                {isSuccess && (
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                  >
-                    <LogoLottie json={SUCCESS} play height={200} width={200} />
-                  </Box>
-                )}
+                <Form autoComplete="off">
+                  <Field name="name" autoComplete="off">
+                    {({ field, form }: { field: any; form: any }) => (
+                      <FormControl
+                        autoComplete="off"
+                        onChange={handleSearch}
+                        colorScheme="red"
+                        isRequired
+                        isInvalid={form.errors.name && form.touched.name}
+                      >
+                        <FormLabel htmlFor="name">
+                          Find your invitation
+                        </FormLabel>
+                        <Input
+                          {...field}
+                          size={size}
+                          variant="filled"
+                          id="name"
+                          placeholder="First Name Last Name"
+                          autoComplete={false}
+                          autoCorrect={false}
+                          _autofill={false}
+                        />
+                        <FormHelperText>
+                          Please search your name here to find your invitation
+                        </FormHelperText>
+                      </FormControl>
+                    )}
+                  </Field>
+                </Form>
                 {newResults?.map(([key, value]: [key: any, value: any]) => {
                   return (
                     <Result

@@ -39,12 +39,22 @@ export const Navigation = (props: {
 
   const getActiveItem = (item: { title: string; route: string }) => {
     if (location.pathname === "/" && item.route === "/") {
-      return "bold";
+      return "black";
     }
     if (item.route !== "/" && location.pathname.includes(item.route)) {
-      return "bold";
+      return "black";
     }
-    return "normal";
+    return "semibold";
+  };
+
+  const getColor = (item: { title: string; route: string }) => {
+    if (location.pathname === "/" && item.route === "/") {
+      return DARK_PRIMARY;
+    }
+    if (item.route !== "/" && location.pathname.includes(item.route)) {
+      return DARK_PRIMARY;
+    }
+    return PRIMARY_COLOR;
   };
 
   return (
@@ -85,7 +95,7 @@ export const Navigation = (props: {
                       // @ts-ignore
                       fontWeight={() => getActiveItem(item)}
                       fontSize="small"
-                      color={PRIMARY_COLOR}
+                      color={getColor(item)}
                     >
                       {item.title.toUpperCase()}
                     </Text>
@@ -94,19 +104,6 @@ export const Navigation = (props: {
                 </>
               );
             })}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.zola.com/registry/elizabethandevanjuly3"
-            >
-              <Text
-                _hover={{ color: DARK_PRIMARY }}
-                fontSize="small"
-                color={PRIMARY_COLOR}
-              >
-                REGISTRY
-              </Text>
-            </a>
             <Box flexGrow={1} />
           </>
         )}
@@ -147,24 +144,7 @@ export const Navigation = (props: {
                   </>
                 );
               })}
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.zola.com/registry/elizabethandevanjuly3"
-              >
-                <Text
-                  p={isMobile ? "3" : "0"}
-                  _hover={{
-                    color: isMobile ? "gray.900" : "whiteAlpha.900",
-                  }}
-                  fontSize={isMobile ? "large" : "small"}
-                  color={isMobile ? "gray.500" : "whiteAlpha.800"}
-                >
-                  REGISTRY
-                </Text>
-              </a>
             </DrawerBody>
-
             <DrawerFooter>
               <Button variant="outline" mr={3} onClick={onClose}>
                 Close

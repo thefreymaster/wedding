@@ -1,8 +1,5 @@
 import { Box, Code, Text } from "@chakra-ui/react";
 import { AIRBNB_CAMBRIDGE_LINK, DARK_PRIMARY } from "../../constants";
-import { ArrowDown } from "../../common/ArrowDown/index";
-import { PrimaryButton } from "../../common/Buttons/index";
-import { Skyline } from "../../common/SVG";
 import { isMobile } from "react-device-detect";
 import { Wrapper } from "../../common/Wrapper";
 import { Card, CardFooter } from "../Attractions";

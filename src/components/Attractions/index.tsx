@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Badge,
-  Box,
-  IconButton,
-  Image,
-  Spinner,
-  ScaleFade,
-} from "@chakra-ui/react";
-import { Skyline } from "../../common/SVG";
+import { Badge, Box, IconButton, Image, ScaleFade } from "@chakra-ui/react";
 import { GoLinkExternal } from "react-icons/go";
 import { BiMap } from "react-icons/bi";
 
@@ -35,11 +27,6 @@ export const Card = (props: {
       alignItems="flex-start"
       justifyContent="flex-start"
     >
-      {/* {!isLoaded && (
-                <Box minHeight="300px" maxHeight="300px" display="flex" alignItems="center" justifyContent="center">
-                    <Spinner />
-                </Box>
-            )} */}
       <ScaleFade initialScale={0.9} in={isLoaded}>
         <Image
           onLoad={() => {
@@ -84,7 +71,7 @@ export const Card = (props: {
 
 export const CardFooter = (props: {
   onClickMap?(): void;
-  onClickLink(): void;
+  onClickLink?(): void;
 }) => (
   <Box
     paddingTop="5"
@@ -95,18 +82,20 @@ export const CardFooter = (props: {
     {props.onClickMap && (
       <IconButton
         onClick={props.onClickMap}
-        marginRight="2"
+        marginRight={props.onClickLink ? "2" : "0"}
         size="sm"
         aria-label="external"
         icon={<BiMap />}
       />
     )}
-    <IconButton
-      onClick={props.onClickLink}
-      size="sm"
-      aria-label="external"
-      icon={<GoLinkExternal />}
-    />
+    {props.onClickLink && (
+      <IconButton
+        onClick={props.onClickLink}
+        size="sm"
+        aria-label="external"
+        icon={<GoLinkExternal />}
+      />
+    )}
   </Box>
 );
 
@@ -128,45 +117,98 @@ const Attractions = () => {
           title="Charles River Esplanade"
           description="Explore the park system around the Charles River bordered by Cambridge and Boston"
           imageSrc="https://elizabethandevan.s3.amazonaws.com/charlesriver.jpeg"
-        />
+        >
+          <CardFooter
+            onClickMap={() =>
+              window.open("https://goo.gl/maps/S9kJTzVhX9xkvXFP9", "_blank")
+            }
+          />
+        </Card>
         <Card
           badge="FOOD"
           title="North End"
           description="The old italian district in Boston, feast on classic italian eats"
           imageSrc="https://elizabethandevan.s3.amazonaws.com/northend2.jpeg"
-        />
+        >
+          <CardFooter
+            onClickMap={() =>
+              window.open("https://goo.gl/maps/vTCtMQgSiuPxEHYc8", "_blank")
+            }
+          />
+        </Card>
         <Card
           badge="SITES"
           title="Seaport"
           description="Get fresh caught seafood right off the boat"
           imageSrc="https://elizabethandevan.s3.amazonaws.com/seaport.jpeg"
-        />
+        >
+          <CardFooter
+            onClickMap={() =>
+              window.open("https://goo.gl/maps/riYfjJQicWrW1Qdh8", "_blank")
+            }
+          />
+        </Card>
         <Card
           badge="SITES"
           title="Harvard Yard"
           description="The oldest part of Harvard University"
           imageSrc="https://elizabethandevan.s3.amazonaws.com/harvard.jpeg"
-        />
+        >
+          <CardFooter
+            onClickMap={() =>
+              window.open("https://goo.gl/maps/nzkoST6ZKTskc5kh7", "_blank")
+            }
+          />
+        </Card>
         <Card
           badge="PARKS"
           title="Boston Common"
           description="Discover all 50 acres of the oldest city park in the United States"
           imageSrc="https://elizabethandevan.s3.amazonaws.com/bostoncommon.jpeg"
-        />
+        >
+          <CardFooter
+            onClickMap={() =>
+              window.open("https://goo.gl/maps/asCYPZqqsqB8vUKF9", "_blank")
+            }
+          />
+        </Card>
         <Card
           badge="BASEBALL"
           title="Fenway Park"
           description="Go to the historic Fenway Park to root on the Red Sox"
           imageSrc="https://elizabethandevan.s3.amazonaws.com/fenway.jpeg"
-        />
+        >
+          <CardFooter
+            onClickMap={() =>
+              window.open("https://goo.gl/maps/oaV9rR6oGXSzCpHo9", "_blank")
+            }
+          />
+        </Card>
         <Card
           badge="SITES"
           title="Freedom Trail"
           description="Follow in the step of our founding fathers, and see where the American Revolution started"
           imageSrc="https://elizabethandevan.s3.amazonaws.com/freedomtrail.jpeg"
-        />
+        >
+          <CardFooter
+            onClickMap={() =>
+              window.open("https://goo.gl/maps/XPH4ivAugJ75HDxk7", "_blank")
+            }
+          />
+        </Card>
+        <Card
+          badge="MARKETPLACE"
+          title="Faneuil Hall Marketplace"
+          description="Explore shopping with many stores and restaurants comprising 3 historic market buildings and a promenade."
+          imageSrc="https://elizabethandevan.s3.amazonaws.com/faneuil-hall.jpeg"
+        >
+          <CardFooter
+            onClickMap={() =>
+              window.open("https://goo.gl/maps/doNtpwBbuz9Lzfei7", "_blank")
+            }
+          />
+        </Card>
       </Box>
-      <Skyline timing={200} />
     </Box>
   );
 };

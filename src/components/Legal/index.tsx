@@ -1,13 +1,14 @@
 import { Box, Text } from "@chakra-ui/layout";
 import { SECONDARY_COLOR } from "../../constants";
+import { isMobile } from 'react-device-detect';
 
 export const Legal = () => {
   return (
-    <Box>
+    <Box position="absolute" bottom="0px" left="50px">
       <Text
         color={SECONDARY_COLOR}
         paddingBottom="4"
-        fontSize="small"
+        fontSize={isMobile ? "xs" : "sm"}
         fontWeight="500"
         letterSpacing="2px"
       >

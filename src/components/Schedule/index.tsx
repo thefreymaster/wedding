@@ -7,7 +7,7 @@ import { GoCalendar } from "react-icons/go";
 
 const events = [
   {
-    time: "5:00pm - 7:00pm, July 2nd, 2022",
+    time: "5:00 - 7:00pm July 2nd, 2022",
     title: "Welcome Reception",
     description:
       "We're inviting all of our guests on Saturday evening to join us for an early celebration",
@@ -28,14 +28,14 @@ const events = [
       "https://calendar.google.com/event?action=TEMPLATE&tmeid=MXBvdTd0NHRpNWhpbmxvNXFhZ2dndWgyazYgZWFuZGUwOTI4QG0&tmsrc=eande0928%40gmail.com",
   },
   {
-    time: "5:30pm - 6:30pm",
+    time: "5:30 - 6:30pm",
     title: "Cocktail Hour",
     business: "Commonwealth",
     description: "Enjoy a drink downstairs after the ceremony",
     address: "Main Tent, 11 Broad Canal Way, Cambridge, MA 02142",
   },
   {
-    time: "6:30pm - 10:00pm",
+    time: "6:30 - 10:00pm",
     title: "Reception",
     business: "Commonwealth",
     description: "All wedding attendees ready to dance & party",

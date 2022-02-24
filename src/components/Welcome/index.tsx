@@ -6,7 +6,6 @@ import { SECONDARY_COLOR, DARK_PRIMARY } from "../../constants";
 import "./welcome.css";
 import classNames from "classnames";
 import { isDesktop, isMobile } from "react-device-detect";
-import { Skyline } from "../../common/SVG/index";
 import Schedule from "../Schedule";
 import { Legal } from "../Legal";
 import { ArrowDown } from "../../common/ArrowDown";
@@ -50,7 +49,7 @@ const Welcome = () => {
         >
           <LogoLottie
             scale="scale(2)"
-            height={250}
+            height={isMobile ? 150 : 250}
             width={isMobile ? 180 : 250}
             play
             json={JSON}
@@ -76,14 +75,43 @@ const Welcome = () => {
             p="1"
             className={classNames({ "fade-in": animate, invisible: !animate })}
           >
-            <Text
-              color={DARK_PRIMARY}
-              fontSize={isMobile ? "2xl" : "6xl"}
-              fontWeight="700"
-              letterSpacing={isMobile ? "2px" : "5px"}
-            >
-              ELIZABETH & EVAN
-            </Text>
+            {isMobile ? (
+              <Box display="flex" flexDir="column" alignItems="center" paddingTop="10">
+                <Text
+                  color={DARK_PRIMARY}
+                  fontSize={isMobile ? "3xl" : "6xl"}
+                  fontWeight="700"
+                  letterSpacing={isMobile ? "2px" : "5px"}
+                >
+                  ELIZABETH
+                </Text>
+                <Text
+                  color={DARK_PRIMARY}
+                  fontSize={isMobile ? "3xl" : "6xl"}
+                  fontWeight="700"
+                  letterSpacing={isMobile ? "2px" : "5px"}
+                >
+                  &
+                </Text>
+                <Text
+                  color={DARK_PRIMARY}
+                  fontSize={isMobile ? "3xl" : "6xl"}
+                  fontWeight="700"
+                  letterSpacing={isMobile ? "2px" : "5px"}
+                >
+                  EVAN
+                </Text>
+              </Box>
+            ) : (
+              <Text
+                color={DARK_PRIMARY}
+                fontSize={isMobile ? "2xl" : "6xl"}
+                fontWeight="700"
+                letterSpacing={isMobile ? "2px" : "5px"}
+              >
+                ELIZABETH & EVAN
+              </Text>
+            )}
           </Box>
           <Box
             display="flex"
@@ -146,7 +174,6 @@ const Welcome = () => {
         </Box>
         <Legal />
       </Box>
-      <Skyline timing={200} />
     </Box>
   );
 };

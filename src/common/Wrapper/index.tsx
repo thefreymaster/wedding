@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, ScaleFade } from '@chakra-ui/react';
-import { Skyline } from '../SVG';
+import { Legal } from '../../components/Legal';
 
 export const Wrapper = (props: { children: React.ReactNode, in: boolean, justifyContent?: string }) => {
     return (
@@ -18,8 +18,8 @@ export const Wrapper = (props: { children: React.ReactNode, in: boolean, justify
                 >
                     {props.children}
                 </Box>
+                <Legal />
             </ScaleFade>
-            <Skyline timing={200} />
         </>
     )
 }

@@ -1,13 +1,23 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, set } from "firebase/database";
 import { getAuth, signInAnonymously } from "firebase/auth";
-import { getPerformance } from "firebase/performance";
-import { getStorage, ref as storRef, listAll, getDownloadURL } from "firebase/storage";
+import { getPerformance, trace } from "firebase/performance";
+import {
+  getStorage,
+  ref as storRef,
+  listAll,
+  getDownloadURL,
+} from "firebase/storage";
+import { getLCP, getFID, getCLS } from "web-vitals";
 
 import "firebase/compat/analytics";
 import "firebase/compat/auth";
 import "firebase/compat/database";
 import "firebase/compat/storage";
+
+getCLS(console.log);
+getFID(console.log);
+getLCP(console.log);
 
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -23,9 +33,13 @@ const app = initializeApp(firebaseConfig);
 const perf = getPerformance(app);
 const auth = getAuth();
 
+export const rsvpSubmitTrace = trace(perf, "SUBMIT_RSVP");
+
 export const signIn = () =>
   signInAnonymously(auth)
-    .then((acc) => {})
+    .then((acc) => {
+      console.log(acc);
+    })
     .catch((error) => {});
 
 export const unFormatName = (name) => {
@@ -47,6 +61,7 @@ export const setAttendee = async ({
   setIsLoading,
   setIsSuccess,
 }) => {
+  rsvpSubmitTrace.start();
   setIsLoading(true);
   try {
     const db = getDatabase();
@@ -56,27 +71,29 @@ export const setAttendee = async ({
     });
     setIsLoading(false);
     setIsSuccess(true);
+    rsvpSubmitTrace.stop();
   } catch (error) {
     setIsLoading(false);
+    rsvpSubmitTrace.stop();
   }
 };
 
 export const getPictures = (setImages) => {
   var storage = getStorage();
-  var storageRef = storRef(storage, 'images');
-  const images = []
+  var storageRef = storRef(storage, "images");
+  const images = [];
   listAll(storageRef)
-      .then(({ items }) => {
-          setImages(items);
-      })
-      .catch((error) => {
-          console.log(error)
-      });
+    .then(({ items }) => {
+      setImages(items);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   return images;
-}
+};
 
 export const getImage = async (url) => {
   const storage = getStorage();
   const imageUrl = await getDownloadURL(storRef(storage, url));
   return imageUrl;
-}
+};

@@ -1,9 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
-import { DARK_PRIMARY, PRIMARY_COLOR, SECONDARY_COLOR } from '../../constants';
-import { ArrowDown } from '../../common/ArrowDown/index';
+import { DARK_PRIMARY, SECONDARY_COLOR } from '../../constants';
 import { PrimaryButton } from '../../common/Buttons/index';
 import { isMobile } from 'react-device-detect';
-import { Skyline } from '../../common/SVG';
 
 export const When = () => {
     return (
@@ -31,7 +29,6 @@ export const When = () => {
             }}>
                 Add to Calendar
             </PrimaryButton>
-            <Skyline timing={200} />
         </Box>
     )
 }

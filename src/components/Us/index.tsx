@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import { Skyline } from "../../common/SVG";
 import { Box } from "@chakra-ui/layout";
 
 import "lightgallery/css/lightgallery.css";
@@ -96,7 +95,6 @@ const Us = () => {
           return <Image image={image} />;
         })}
       </Box>
-      <Skyline timing={200} />
     </Box>
   );
 };

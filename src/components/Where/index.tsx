@@ -1,8 +1,6 @@
-import React from 'react';
 import { Box, Text } from '@chakra-ui/react';
 import { DARK_PRIMARY, SECONDARY_COLOR } from '../../constants';
 import { PrimaryButton } from '../../common/Buttons/index';
-import { Skyline } from '../../common/SVG';
 
 export const Where = () => {
     return (
@@ -30,7 +28,6 @@ export const Where = () => {
             }}>
                 Open in Google Maps
             </PrimaryButton>
-            <Skyline timing={200} />
         </Box >
     )
 }

@@ -1,10 +1,18 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Lazy from "./lazy";
+import { Spinner } from "@chakra-ui/react";
+import { Wrapper } from '../common/Wrapper/index';
 
 const Router = () => {
   return (
-    <React.Suspense fallback="Loading...">
+    <React.Suspense
+      fallback={
+        <Wrapper in>
+          <Spinner />
+        </Wrapper>
+      }
+    >
       <Switch>
         <Route exact path="/">
           <Lazy.Welcome />
